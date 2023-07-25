@@ -85,7 +85,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: 'http://192.168.1.11:1337/api', 
+    baseURL: 'https://exide.descuentosya.uy/api', 
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

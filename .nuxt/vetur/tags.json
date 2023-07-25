@@ -8,6 +8,9 @@
   "VuetifyLogo": {
     "description": "Auto imported from components/VuetifyLogo.vue"
   },
+  "AccountsRegisterComponent": {
+    "description": "Auto imported from components/accounts/registerComponent.vue"
+  },
   "AccountingCashFlowComponent": {
     "description": "Auto imported from components/accounting/cashFlowComponent.vue"
   },
@@ -20,20 +23,17 @@
   "AccountingResumeComponent": {
     "description": "Auto imported from components/accounting/resumeComponent.vue"
   },
-  "AccountsRegisterComponent": {
-    "description": "Auto imported from components/accounts/registerComponent.vue"
+  "CardsAlquileresExpensasComponent": {
+    "description": "Auto imported from components/cards/alquileresExpensasComponent.vue"
   },
-  "ClientsCreateComponent": {
-    "description": "Auto imported from components/clients/createComponent.vue"
+  "CardsCashFlowComponent": {
+    "description": "Auto imported from components/cards/cashFlowComponent.vue"
   },
-  "ClientsEditComponent": {
-    "description": "Auto imported from components/clients/editComponent.vue"
+  "CardsHabitantesComponent": {
+    "description": "Auto imported from components/cards/habitantesComponent.vue"
   },
-  "ClientsListComponent": {
-    "description": "Auto imported from components/clients/listComponent.vue"
-  },
-  "ClientsShowComponent": {
-    "description": "Auto imported from components/clients/showComponent.vue"
+  "ChemicalAnalysisItemTableComponent": {
+    "description": "Auto imported from components/chemicalAnalysis/itemTableComponent.vue"
   },
   "GeneralAdminComponent": {
     "description": "Auto imported from components/general/adminComponent.vue"
@@ -56,26 +56,26 @@
   "GeneralTableComponent": {
     "description": "Auto imported from components/general/tableComponent.vue"
   },
-  "ChemicalAnalysisItemTableComponent": {
-    "description": "Auto imported from components/chemicalAnalysis/itemTableComponent.vue"
-  },
-  "CardsAlquileresExpensasComponent": {
-    "description": "Auto imported from components/cards/alquileresExpensasComponent.vue"
-  },
-  "CardsCashFlowComponent": {
-    "description": "Auto imported from components/cards/cashFlowComponent.vue"
-  },
-  "CardsHabitantesComponent": {
-    "description": "Auto imported from components/cards/habitantesComponent.vue"
-  },
-  "OrdersIncidencesComponent": {
-    "description": "Auto imported from components/orders/incidencesComponent.vue"
-  },
   "HeadersDashboardComponent": {
     "description": "Auto imported from components/headers/dashboardComponent.vue"
   },
   "HeadersGeneralComponent": {
     "description": "Auto imported from components/headers/generalComponent.vue"
+  },
+  "ClientsCreateComponent": {
+    "description": "Auto imported from components/clients/createComponent.vue"
+  },
+  "ClientsEditComponent": {
+    "description": "Auto imported from components/clients/editComponent.vue"
+  },
+  "ClientsListComponent": {
+    "description": "Auto imported from components/clients/listComponent.vue"
+  },
+  "ClientsShowComponent": {
+    "description": "Auto imported from components/clients/showComponent.vue"
+  },
+  "OrdersIncidencesComponent": {
+    "description": "Auto imported from components/orders/incidencesComponent.vue"
   },
   "PromotionsCardComponent": {
     "description": "Auto imported from components/promotions/cardComponent.vue"
@@ -109,6 +109,9 @@
   },
   "AccountingCashFlowIncomesComponent": {
     "description": "Auto imported from components/accounting/cashFlow/incomesComponent.vue"
+  },
+  "CardsSinglePropertyComponent": {
+    "description": "Auto imported from components/cards/singleProperty/component.vue"
   },
   "FormsFieldsCheckboxComponent": {
     "description": "Auto imported from components/forms/fields/checkboxComponent.vue"
@@ -160,9 +163,6 @@
   },
   "GeneralUploadSingleFileComponent": {
     "description": "Auto imported from components/general/upload/singleFileComponent.vue"
-  },
-  "CardsSinglePropertyComponent": {
-    "description": "Auto imported from components/cards/singleProperty/component.vue"
   },
   "StoreCardsCompleteComponent": {
     "description": "Auto imported from components/store/cards/completeComponent.vue"
