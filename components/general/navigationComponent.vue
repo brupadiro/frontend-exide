@@ -61,12 +61,12 @@
       </template>
     </v-navigation-drawer>
     <v-bottom-navigation app v-show="mobileMenu" background-color="primary" class="rounded-t-xl">
-      <template v-for="(item, i) in bottomItems">
+      <template v-for="(item, i) in adminItems">
 
         <v-bottom-sheet v-if="item.subItems" :key="i" class="rounded-t-xl">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn v-bind="attrs" icon color="primary" v-on="on">
-              <img :src="`/icons/${item.icon}.png`" width="30px">
+            <v-btn v-bind="attrs"  class="white--text font-weight-bold" v-on="on">
+              <span class="white--text">{{ item.title }}</span>
             </v-btn>
           </template>
           <v-list color="primary">
@@ -74,7 +74,6 @@
               <v-list-item-content>
                 <v-btn color="white" outlined block height="50" class="btn-navigation"
                   active-class="btn-navigation-active secondary  black--text" :to="subItem.to" exact>
-                  <img :src="`/icons/${subItem.icon}.png`" width="30px">
                   <span>{{subItem.title}}</span>
                 </v-btn>
               </v-list-item-content>
