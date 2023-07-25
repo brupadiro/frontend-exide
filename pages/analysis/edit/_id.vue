@@ -284,8 +284,8 @@
                     subject: '',
                     samples: [{
                         name: '',
-                        chemycal_items: [],
-                        phisical_items: []
+                        phisicalAnalysis: [],
+                        chemicalAnalysis: []
                     }],
                     expectedDate: '',
                     deliveryDate: '',
