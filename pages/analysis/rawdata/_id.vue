@@ -15,44 +15,218 @@
                         <v-tab-item v-for="sample in analysis.samples" :key="`vt${sample.id}`">
 
                             <v-card-title class="border-tabs pb-0 mb-0">
-                                <v-tabs v-model="tab" bg-color="yellow" active-class="active-tab">
-                                    <v-tab class="font-weight-bold">Chemical analysis</v-tab>
+                                <v-tabs v-model="typeTab" bg-color="yellow" active-class="active-tab">
+                                    <v-tab class="font-weight-black">Chemical analysis</v-tab>
                                     <v-tab class="font-weight-black">Phisical analysis</v-tab>
                                 </v-tabs>
                             </v-card-title>
-                            <v-tabs-items v-model="tab">
+                            <v-tabs-items v-model="typeTab">
                                 <v-tab-item>
                                     <v-card-text>
                                         <v-card outlined>
-                                            <v-tabs v-model="chemycalTab" bg-color="yellow" active-class="active-tab">
+                                            <v-tabs v-model="analysisChemycalTab" bg-color="yellow"
+                                                active-class="active-tab">
                                                 <v-tab class="font-weight-bold"
                                                     v-for="chemicalItem in sample.chemicalAnalysis"
                                                     :key="chemicalItem.id">
-                                                    {{ chemicalItem }}
+                                                    <v-menu bottom >
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-btn color="yellow" text v-bind="attrs" v-on="on">
+                                            {{ chemicalItem.description }}<v-icon class="white rounded-md ml-2" color="black">mdi-chevron-down</v-icon>
+                                        </v-btn>
+                                    </template>
+                                    <v-list>
+                                        <v-list-item @click="()=>{historicoModal = true;historialAnalysis = itemsTable(sample.name,'chemical',chemicalItem.description)}">
+                                            <v-list-item-title>Historico</v-list-item-title>
+                                        </v-list-item>
+
+                                    </v-list>
+                                </v-menu>
+
                                                 </v-tab>
                                             </v-tabs>
                                             <v-card-text>
-                                                <v-data-table :items="items" :headers="headersSample" hide-default-footer></v-data-table>
-                                            </v-card-text>
+                                                <v-tabs-items v-model="analysisChemycalTab">
+                                                    <v-tab-item v-for="chemicalItem in sample.chemicalAnalysis"
+                                                        :key="chemicalItem.id">
+                                                        <GeneralCardComponent flat>
+                                                            <v-data-table
+                                                                :items="itemsTable(sample.name,'chemical',chemicalItem.description)"
+                                                                calculate-widths :headers="headersSample"
+                                                                hide-default-footer>
+                                                                <template v-slot:foot>
+                                                                    <tr>
+                                                                        <td class="pa-2">
+                                                                            <FormsFieldsTextComponent
+                                                                                v-model="analysisValue.Bezeichnun"
+                                                                                placeholder="N/A">
+                                                                            </FormsFieldsTextComponent>
+                                                                        </td>
+                                                                        <td class="pa-2">
+                                                                            <FormsFieldsTextComponent
+                                                                                v-model="analysisValue.Rack"
+                                                                                placeholder="N/A">
+                                                                            </FormsFieldsTextComponent>
+                                                                        </td>
+                                                                        <td class="pa-2">
+                                                                            <FormsFieldsTextComponent
+                                                                                v-model="analysisValue.Typ"
+                                                                                placeholder="N/A">
+                                                                            </FormsFieldsTextComponent>
+                                                                        </td>
+                                                                        <td class="pa-2">
+                                                                            <FormsFieldsTextComponent
+                                                                                v-model="analysisValue.DalumUhrze"
+                                                                                placeholder="N/A">
+                                                                            </FormsFieldsTextComponent>
+                                                                        </td>
+                                                                        <td class="pa-2">
+                                                                            <FormsFieldsTextComponent
+                                                                                v-model="analysisValue.ElementBezeichnun"
+                                                                                placeholder="N/A">
+                                                                            </FormsFieldsTextComponent>
+                                                                        </td>
+                                                                        <td class="pa-2">
+                                                                            <FormsFieldsTextComponent
+                                                                                v-model="analysisValue.Einheit"
+                                                                                placeholder="N/A">
+                                                                            </FormsFieldsTextComponent>
+                                                                        </td>
+                                                                        <td class="pa-2">
+                                                                            <FormsFieldsTextComponent
+                                                                                v-model="analysisValue.Intensity"
+                                                                                placeholder="N/A">
+                                                                            </FormsFieldsTextComponent>
+                                                                        </td>
+                                                                    </tr>
+                                                                </template>
+                                                            </v-data-table>
+                                                            <v-card-actions>
+                                                                <v-spacer></v-spacer>
 
+                                                                <FormsFieldsSelectComponent dense
+                                                                    label-color="white--text"
+                                                                    class="mb-2 mr-3"
+                                                                    :items="comboInfo.listaLaboratory"
+                                                                    v-model="analysisValue.laboratory"
+                                                                    placeholder="Laboratory">
+                                                                </FormsFieldsSelectComponent>
+
+
+                                                                <v-btn color="yellow font-weight-bold black--text"
+                                                                    class="rounded-lg"
+                                                                    @click="saveItem(sample.id,chemicalItem.id,'chemical')">
+                                                                    Add item</v-btn>
+                                                            </v-card-actions>
+
+                                                        </GeneralCardComponent>
+                                                    </v-tab-item>
+                                                </v-tabs-items>
+                                            </v-card-text>
                                         </v-card>
                                     </v-card-text>
-
                                 </v-tab-item>
-
                                 <v-tab-item>
                                     <v-card-text>
                                         <v-card outlined>
-                                            <v-tabs v-model="phisicalTab" bg-color="yellow" active-class="active-tab"
-                                                grow>
+                                            <v-tabs v-model="analysisPhisicalTab" bg-color="yellow"
+                                                active-class="active-tab">
                                                 <v-tab class="font-weight-bold"
-                                                    v-for="chemicalItem in sample.phisicalAnalysis"
-                                                    :key="chemicalItem.id">
-                                                    {{ chemicalItem }}
+                                                    v-for="phisicalItem in sample.phisicalAnalysis" :key="phisicalItem">
+
+                                                    <v-menu bottom >
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-btn color="yellow" text v-bind="attrs" v-on="on">
+                                            {{ phisicalItem.description }}<v-icon class="white rounded-md ml-2" color="black">mdi-chevron-down</v-icon>
+                                        </v-btn>
+                                    </template>
+                                    <v-list>
+                                        <v-list-item @click="()=>{historicoModal = true;historialAnalysis = itemsTable(sample.name,'phisical',phisicalItem.description)}">
+                                            <v-list-item-title>Historico</v-list-item-title>
+                                        </v-list-item>
+
+                                    </v-list>
+                                </v-menu>
+
+
+                                                  
                                                 </v-tab>
                                             </v-tabs>
                                             <v-card-text>
-                                                <v-data-table :items="items" :headers="headersSample" hide-default-footer></v-data-table>
+                                                <v-tabs-items v-model="analysisPhisicalTab">
+                                                    <v-tab-item v-for="phisicalItem in sample.phisicalAnalysis"
+                                                        :key="phisicalItem.id">
+                                                        <GeneralCardComponent flat>
+                                                            <v-data-table
+                                                                :items="itemsTable(sample.name,'phisical',phisicalItem.description)"
+                                                                calculate-widths :headers="headersSample"
+                                                                hide-default-footer>
+                                                                <template v-slot:foot>
+                                                                    <tr>
+                                                                        <td class="pa-2">
+                                                                            <FormsFieldsTextComponent
+                                                                                v-model="analysisValue.Bezeichnun"
+                                                                                placeholder="N/A">
+                                                                            </FormsFieldsTextComponent>
+                                                                        </td>
+                                                                        <td class="pa-2">
+                                                                            <FormsFieldsTextComponent
+                                                                                v-model="analysisValue.Rack"
+                                                                                placeholder="N/A">
+                                                                            </FormsFieldsTextComponent>
+                                                                        </td>
+                                                                        <td class="pa-2">
+                                                                            <FormsFieldsTextComponent
+                                                                                v-model="analysisValue.Typ"
+                                                                                placeholder="N/A">
+                                                                            </FormsFieldsTextComponent>
+                                                                        </td>
+                                                                        <td class="pa-2">
+                                                                            <FormsFieldsTextComponent
+                                                                                v-model="analysisValue.DalumUhrze"
+                                                                                placeholder="N/A">
+                                                                            </FormsFieldsTextComponent>
+                                                                        </td>
+                                                                        <td class="pa-2">
+                                                                            <FormsFieldsTextComponent
+                                                                                v-model="analysisValue.ElementBezeichnun"
+                                                                                placeholder="N/A">
+                                                                            </FormsFieldsTextComponent>
+                                                                        </td>
+                                                                        <td class="pa-2">
+                                                                            <FormsFieldsTextComponent
+                                                                                v-model="analysisValue.Einheit"
+                                                                                placeholder="N/A">
+                                                                            </FormsFieldsTextComponent>
+                                                                        </td>
+                                                                        <td class="pa-2">
+                                                                            <FormsFieldsTextComponent
+                                                                                v-model="analysisValue.Intensity"
+                                                                                placeholder="N/A">
+                                                                            </FormsFieldsTextComponent>
+                                                                        </td>
+                                                                    </tr>
+                                                                </template>
+                                                            </v-data-table>
+                                                            <v-card-actions>
+                                                                <v-spacer></v-spacer>
+                                                                <FormsFieldsSelectComponent dense
+                                                                    label-color="white--text"
+                                                                    class="mb-2 mr-3"
+                                                                    :items="comboInfo.listaLaboratory"
+                                                                    v-model="analysisValue.laboratory"
+                                                                    placeholder="Laboratory">
+                                                                </FormsFieldsSelectComponent>
+
+                                                                <v-btn color="yellow font-weight-bold black--text"
+                                                                    class="rounded-lg"
+                                                                    @click="saveItem(sample.id,phisicalItem.id,'phisical')">
+                                                                    Add item</v-btn>
+                                                            </v-card-actions>
+
+                                                        </GeneralCardComponent>
+                                                    </v-tab-item>
+                                                </v-tabs-items>
                                             </v-card-text>
 
                                         </v-card>
@@ -75,117 +249,241 @@
                 </GeneralCardComponent>
             </v-col>
         </v-row>
+        <v-dialog v-model="historicoModal" persistent max-width="600">
+            <GeneralCardComponent >
+                <GeneralCardTitleComponent>Historical
+                    <v-spacer></v-spacer>
+                    <v-btn icon @click="historicoModal = false">
+                        <v-icon>mdi-close</v-icon>
+                    </v-btn>
+                </GeneralCardTitleComponent>
+                <v-divider></v-divider>
+                <v-card-text>
+                    <v-data-table :headers="[{text:'Date',value:'createdAt'},{text:'Laboratory',value:'laboratory'}]"
+                        :items="historialAnalysis" hide-default-footer>
+                        <template v-slot:item.createdAt="{item}">
+                            {{item.createdAt | formatDate}}
+                            </template>
+                        </v-data-table>
+                </v-card-text>
+            </GeneralCardComponent>
+        </v-dialog>
+
+
     </v-container>
 </template>
 
 <script>
     import itemTableComponent from '@/components/chemicalAnalysis/itemTableComponent.vue'
+    import exideJson from '~/static/exide.json'
+    import moment from 'moment'
     export default {
+        filters:{
+            formatDate(value){
+                return moment(value).format('DD/MM/YYYY')
+            }
+        },
         data() {
             return {
-                tab: 1,
-                chemycalTab: 1,
-                phisicalTab: 1,
-                sampleTab: 1,
+                exideJson: exideJson,
+                historicoModal:false,
+                sampleTab: 0,
+                typeTab: 0,
+                analysisChemycalTab: 0,
+                analysisPhisicalTab: 0,
+                analysisValue: {
+                    Bezeichnun: '',
+                    Rack: '',
+                    Typ: '',
+                    DalumUhrze: '',
+                    ElementBezeichnun: '',
+                    Einheit: '',
+                    Intensity: ''
+                },
                 analysis: {
                     project: [],
                     subject: '',
                     samples: [{
                         name: '',
-                        chemycal_test: [],
-                        phisical_test: []
+                        chemicalAnalysis: [],
+                        phisicalAnalysis: []
                     }],
                     expectedDate: '',
                     deliveryDate: '',
                     status: '',
                     samples_back: false
                 },
+                historialAnalysis: [],
                 headersSample: [{
-                    value: 'primero',
+                    value: 'Bezeichnun',
                     text: 'Bezeichnun'
 
-                },{
-                    value: 'segundo',
+                }, {
+                    value: 'Rack',
                     text: 'Rack:Gefa'
 
-                },{
-                    value: 'tercero',
+                }, {
+                    value: 'Typ',
                     text: 'Typ'
 
-                },{
-                    value: 'cuarto',
+                }, {
+                    value: 'DalumUhrze',
                     text: 'Dalum Uhrze'
 
-                },{
-                    value: 'quinto',
+                }, {
+                    value: 'ElementBezeichnun',
                     text: 'Element-Bezeichnun'
 
-                },{
-                    value: 'sexto',
+                }, {
+                    value: 'Einheit',
                     text: 'Einheit'
 
-                },{
-                    value: 'septimo',
+                }, {
+                    value: 'Intensity',
                     text: 'Intensity'
 
                 }],
-                items:[
-                        {
-                            primero:'Blank',
-                            segundo:'S2:1',
-                            tercero:'BLK',
-                            cuarto:'15.03.2022 13:57',
-                            quinto:'AG 328,068',
-                            sexto:'ppm',
-                            septimo:'3,45'
 
-                        },
-                        {
-                            primero:'Blank',
-                            segundo:'S2:1',
-                            tercero:'BLK',
-                            cuarto:'15.03.2022 13:57',
-                            quinto:'AG 328,068',
-                            sexto:'ppm',
-                            septimo:'8,27'
+                headersEdit: [{
+                    value: 'Bezeichnun',
+                    text: 'Bezeichnun'
 
-                        },
-                        {
-                            primero:'Blank',
-                            segundo:'S2:1',
-                            tercero:'BLK',
-                            cuarto:'15.03.2022 13:57',
-                            quinto:'AG 328,068',
-                            sexto:'ppm',
-                            septimo:'9,9'
+                }, {
+                    value: 'Rack',
+                    text: 'Rack:Gefa'
 
-                        },
-                        {
-                            primero:'Blank',
-                            segundo:'S2:1',
-                            tercero:'BLK',
-                            cuarto:'15.03.2022 13:57',
-                            quinto:'AG 328,068',
-                            sexto:'ppm',
-                            septimo:'5,1'
+                }, {
+                    value: 'Typ',
+                    text: 'Typ'
 
-                        },
+                }, {
+                    value: 'DalumUhrze',
+                    text: 'Dalum Uhrze'
 
-                    ]
+                }, {
+                    value: 'ElementBezeichnun',
+                    text: 'Element-Bezeichnun'
+
+                }, {
+                    value: 'Einheit',
+                    text: 'Einheit'
+
+                }, {
+                    value: 'Intensity',
+                    text: 'Intensity'
+
+                }],
+
+
+                items: [{
+                        primero: 'Blank',
+                        segundo: 'S2:1',
+                        tercero: 'BLK',
+                        cuarto: '15.03.2022 13:57',
+                        quinto: 'AG 328,068',
+                        sexto: 'ppm',
+                        septimo: '3,45'
+
+                    },
+                    {
+                        primero: 'Blank',
+                        segundo: 'S2:1',
+                        tercero: 'BLK',
+                        cuarto: '15.03.2022 13:57',
+                        quinto: 'AG 328,068',
+                        sexto: 'ppm',
+                        septimo: '8,27'
+
+                    },
+                    {
+                        primero: 'Blank',
+                        segundo: 'S2:1',
+                        tercero: 'BLK',
+                        cuarto: '15.03.2022 13:57',
+                        quinto: 'AG 328,068',
+                        sexto: 'ppm',
+                        septimo: '9,9'
+
+                    },
+                    {
+                        primero: 'Blank',
+                        segundo: 'S2:1',
+                        tercero: 'BLK',
+                        cuarto: '15.03.2022 13:57',
+                        quinto: 'AG 328,068',
+                        sexto: 'ppm',
+                        septimo: '5,1'
+
+                    },
+
+                ],
+                comboInfo: {},
+                analysisValues: {}
 
             }
         },
         name: 'indexPage',
         created() {
             this.getAnalysis()
+            this.getAnalysisValues()
+            this.getComboInfo()
+
         },
         methods: {
+            getComboInfo() {
+                let result = {};
+                for (let key in this.exideJson) {
+                    if (this.exideJson.hasOwnProperty(key) && typeof this.exideJson[key] === 'object') {
+                        result[key] = Object.values(this.exideJson[key]);
+                    }
+                }
+                this.comboInfo = result
+            },
+
+
+            itemsTable(sampleName, type, item) {
+                if (this.analysisValues[sampleName]) console.log(this.analysisValues[sampleName][type])
+                if (this.analysisValues && this.analysisValues[sampleName] && this.analysisValues[sampleName][type] &&
+                    this.analysisValues[sampleName][type][item] !== undefined) {
+                    return this.analysisValues[sampleName][type][item];
+                }
+                return [];
+            },
             getAnalysis() {
                 const idAnalysis = this.$route.params.id
-                this.$axios.get(`/analyses/${idAnalysis}/?populate=*`).then((response) => {
+                this.$axios.get(`/analyses/${idAnalysis}/?populate=deep`).then((response) => {
                     this.analysis = response.data.data
                 })
             },
+            getAnalysisValues() {
+                const idAnalysis = this.$route.params.id
+                this.$axios.get(`/analysis-values/?analysis_id=${idAnalysis}`).then((response) => {
+                    this.analysisValues = response.data
+                })
+            },
+
+
+            async saveItem(sample, normative, type) {
+                await this.$axios.post('/analysis-values', {
+                    data: {
+                        sample: sample,
+                        type: type,
+                        normative_step: normative,
+                        analysis: this.$route.params.id,
+                        ...this.analysisValue
+                    }
+                })
+                this.analysisValue = {
+                    Bezeichnun: '',
+                    Rack: '',
+                    Typ: '',
+                    DalumUhrze: '',
+                    ElementBezeichnun: '',
+                    Einheit: '',
+                    Intensity: ''
+                }
+                await this.getAnalysisValues()
+            }
         }
     }
 </script>

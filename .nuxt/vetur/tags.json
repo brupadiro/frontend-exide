@@ -8,9 +8,6 @@
   "VuetifyLogo": {
     "description": "Auto imported from components/VuetifyLogo.vue"
   },
-  "AccountsRegisterComponent": {
-    "description": "Auto imported from components/accounts/registerComponent.vue"
-  },
   "AccountingCashFlowComponent": {
     "description": "Auto imported from components/accounting/cashFlowComponent.vue"
   },
@@ -23,6 +20,9 @@
   "AccountingResumeComponent": {
     "description": "Auto imported from components/accounting/resumeComponent.vue"
   },
+  "AccountsRegisterComponent": {
+    "description": "Auto imported from components/accounts/registerComponent.vue"
+  },
   "CardsAlquileresExpensasComponent": {
     "description": "Auto imported from components/cards/alquileresExpensasComponent.vue"
   },
@@ -32,8 +32,26 @@
   "CardsHabitantesComponent": {
     "description": "Auto imported from components/cards/habitantesComponent.vue"
   },
+  "ClientsCreateComponent": {
+    "description": "Auto imported from components/clients/createComponent.vue"
+  },
+  "ClientsEditComponent": {
+    "description": "Auto imported from components/clients/editComponent.vue"
+  },
+  "ClientsListComponent": {
+    "description": "Auto imported from components/clients/listComponent.vue"
+  },
+  "ClientsShowComponent": {
+    "description": "Auto imported from components/clients/showComponent.vue"
+  },
   "ChemicalAnalysisItemTableComponent": {
     "description": "Auto imported from components/chemicalAnalysis/itemTableComponent.vue"
+  },
+  "HeadersDashboardComponent": {
+    "description": "Auto imported from components/headers/dashboardComponent.vue"
+  },
+  "HeadersGeneralComponent": {
+    "description": "Auto imported from components/headers/generalComponent.vue"
   },
   "GeneralAdminComponent": {
     "description": "Auto imported from components/general/adminComponent.vue"
@@ -56,24 +74,6 @@
   "GeneralTableComponent": {
     "description": "Auto imported from components/general/tableComponent.vue"
   },
-  "HeadersDashboardComponent": {
-    "description": "Auto imported from components/headers/dashboardComponent.vue"
-  },
-  "HeadersGeneralComponent": {
-    "description": "Auto imported from components/headers/generalComponent.vue"
-  },
-  "ClientsCreateComponent": {
-    "description": "Auto imported from components/clients/createComponent.vue"
-  },
-  "ClientsEditComponent": {
-    "description": "Auto imported from components/clients/editComponent.vue"
-  },
-  "ClientsListComponent": {
-    "description": "Auto imported from components/clients/listComponent.vue"
-  },
-  "ClientsShowComponent": {
-    "description": "Auto imported from components/clients/showComponent.vue"
-  },
   "OrdersIncidencesComponent": {
     "description": "Auto imported from components/orders/incidencesComponent.vue"
   },
@@ -88,12 +88,6 @@
   },
   "PromotionsListComponent": {
     "description": "Auto imported from components/promotions/listComponent.vue"
-  },
-  "SamplesSampleValueComponent": {
-    "description": "Auto imported from components/samples/sampleValueComponent.vue"
-  },
-  "SamplesTabComponent": {
-    "description": "Auto imported from components/samples/tabComponent.vue"
   },
   "StoreAllOrdersCardComponent": {
     "description": "Auto imported from components/store/allOrdersCardComponent.vue"
@@ -154,6 +148,12 @@
   },
   "GeneralNavigationUserComponent": {
     "description": "Auto imported from components/general/navigation/userComponent.vue"
+  },
+  "SamplesTabComponent": {
+    "description": "Auto imported from components/samples/tabComponent.vue"
+  },
+  "SamplesValueComponent": {
+    "description": "Auto imported from components/samples/valueComponent.vue"
   },
   "GeneralUploadCardComponent": {
     "description": "Auto imported from components/general/upload/cardComponent.vue"

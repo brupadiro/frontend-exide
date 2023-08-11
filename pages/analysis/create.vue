@@ -93,7 +93,7 @@
                                 </v-toolbar>
                                 <divider></divider>
                                 <v-card-text>
-                                    <row>
+                                    <v-row>
                                         <v-col class="col-12">
                                             <v-card outlined>
                                                 <v-row no-gutters class="grey lighten-2">
@@ -113,11 +113,12 @@
                                                     </v-col>
                                                 </v-row>
                                                 <v-row no-gutters>
-                                                    <v-col class="col-6" v-for="(label,index) in chemicalAnalysisItems"
-                                                        :key="index">
-                                                        <v-checkbox :label="label" :value="label"
+                                                    <v-col class="col-6"
+                                                        v-for="(normative,index) in chemicalAnalysisItems" :key="index">
+                                                        <v-checkbox :label="normative.description" :value="normative.id"
                                                             v-model="analysis.samples[sindex].chemicalAnalysis"
                                                             class="font-weight-bold black--text"></v-checkbox>
+                                                            <v-select flat label="Select an option" dense item-text="description" item-value="id"></v-select>
                                                     </v-col>
                                                 </v-row>
                                             </v-card>
@@ -141,18 +142,19 @@
                                                     </v-col>
                                                 </v-row>
                                                 <v-row no-gutters>
-                                                    <v-col class="col-6" v-for="(label,index) in phisicalAnalysisItems"
+                                                    <v-col class="col-6" v-for="(normative,index) in phisicalAnalysisItems"
                                                         :key="index">
-                                                        <v-checkbox :label="label" :value="label"
+                                                        <v-checkbox  :label="normative.description" :value="normative.id"
                                                             v-model="analysis.samples[sindex].phisicalAnalysis"
                                                             class="font-weight-bold black--text"></v-checkbox>
+                                                            <v-select flat label="Select an option" dense item-text="description" item-value="id"></v-select>
 
                                                     </v-col>
                                                 </v-row>
                                             </v-card>
                                         </v-col>
 
-                                    </row>
+                                    </v-row>
                                 </v-card-text>
                             </v-card>
                         </v-col>
@@ -175,7 +177,7 @@
                         </v-col>
                         <v-col class="col-md-6 col-12">
                             <FormsFieldsSelectComponent type="date" v-model="analysis.status" dense
-                                :items="comboInfo.listaStatus"></FormsFieldsSelectComponent>
+                                :items="statusItems"></FormsFieldsSelectComponent>
                         </v-col>
 
                         <v-col class="col-md-6 col-12">
@@ -235,42 +237,10 @@
 
 
                 snackBarSuccess: false,
-                chemicalAnalysisItems: [
-                    'ICP-OES',
-                    'H3PO4 (BD)',
-                    'ICP-OES: Additives (AZ)',
-                    'SiO2 (BD)',
-                    '% Carbon-C-S Analyzer',
-                    'Chlorides, Cl- (BD)',
-                    '% PbSO4 -C-S Analyzer',
-                    'Anions (BD)',
-                    'H2SO4',
-                    'Separators',
-                    '% Free Lead',
-                    'Moisture',
-                    '% Pbo2',
-                    'pH',
-                    '%Pbo',
-                ],
-                phisicalAnalysisItems: [
-                    'Porosity (AZ)',
-                    'Electrical Resistivity (AZ)',
-                    'BET (AZ)',
-                    'Tensile Testing',
-                    'Metallographic',
-                    'Thickness',
-                    'Stereoscopic Microscopy',
-                    'Hardness',
-                    'Separators',
-                    'Corrsion test',
-                    'X-Ray (BD)',
-                    'Moisture',
-                    'Oxidation Resistance',
-                    'Weight',
-                    'Mass adhesion',
-                    'Allow composition Spark Emission (BD)',
-                    'Other',
-                ],
+                normativeItems: {
+                    data: []
+                },
+
                 statusItems: [
                     'Peticion hecha',
                     'Peticion aceptada',
@@ -309,6 +279,8 @@
         },
         created() {
             this.getComboInfo()
+            this.getNormatives()
+
         },
         name: 'indexPage',
         methods: {
@@ -322,6 +294,15 @@
             },
             removeSample() {
                 this.analysis.samples.splice(this.analysis.samples.length - 1, 1)
+            },
+            getNormatives() {
+                this.$axios.get('/normative-steps/?populate=*')
+                    .then(response => {
+                        this.normativeItems = response.data
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
             },
             setChemicalAnalysis(value, index) {
                 this.analysis.chemicalAnalysis[index] = value
@@ -350,7 +331,26 @@
             },
 
 
+        },
+
+        computed: {
+            chemicalAnalysisItems() {
+                var data = []
+                data = this.normativeItems.data.filter((n)=>{
+                    return n.normative?.type =='Chemical'
+                })
+                return data
+            },
+            phisicalAnalysisItems() {
+                var data = []
+                data = this.normativeItems.data.filter((n)=>{
+                    return n.normative?.type =='Phisical'
+                })
+                return data
+            }
+
         }
+
     }
 </script>
 

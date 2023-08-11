@@ -16,7 +16,7 @@
             <v-toolbar dense color="primary" elevation="0"></v-toolbar>
             <v-data-table hide-default-footer :headers="headers" :items="items.data">
                 <template v-slot:[`item.Actions`]="{ item }">
-                    <v-btn color="yellow" class="black--text font-weight-bold" to="/normative/normativeStepFields"
+                    <v-btn color="yellow" class="black--text font-weight-bold" :to="`/normative/normativeStepFields/${item.id}`"
                         small>
                         Opciones
                     </v-btn>
@@ -57,7 +57,8 @@
                 },
                 step: {
                     description: '',
-                    order: 1
+                    order: 1,
+                    normatives:[]
                 },
                 headers: [{
                         value: 'id',
@@ -83,12 +84,13 @@
         },
         methods: {
             getSteps() {
-                this.$axios.get('/normative-steps')
+                this.$axios.get('/normative-steps/?filters[normative]='+this.$route.params.id)
                     .then((response) => {
                         this.items = response.data
                     })
             },
             createStep() {
+                this.step.normative=this.$route.params.id
                 this.$axios.post('/normative-steps', {
                         data: this.step
                     })

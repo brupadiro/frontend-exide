@@ -20,6 +20,7 @@
     "particles.js": "^2.0.0",
     "qs": "^6.11.1",
     "vue": "^2.7.10",
+    "vue-excel-xlsx": "^1.2.2",
     "vue-frappe-chart": "^0.1.10",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10",

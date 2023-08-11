@@ -13,6 +13,15 @@
         <v-row>
             <v-col class="col-12">
                 <GeneralCardComponent>
+                    <v-card-title class="primary">
+                        <v-spacer></v-spacer>
+                        <vue-excel-xlsx :data="items.data" :columns="excelColumns" :file-name="'filename'"
+                            :file-type="'xlsx'" :sheet-name="'sheetname'">
+                            <v-btn color="green" class="rounded-lg font-weight-bold white--text">Download <v-icon>
+                                    mdi-file-excel</v-icon>
+                            </v-btn>
+                        </vue-excel-xlsx>
+                    </v-card-title>
                     <v-card-title dense class="primary" :elevation="0">
                         <v-row>
                             <v-col class="col-md-10 col-12">
@@ -31,7 +40,7 @@
                                     </v-col>
                                     <v-col>
                                         <FormsFieldsSelectComponent dense label-color="white--text"
-                                            :items="comboInfo.listaLabTechnician" v-model="search.techinician.$contains"
+                                            :items="comboInfo.listaLabTechnician" v-model="search.technician.$contains"
                                             label="Lab technician">
                                         </FormsFieldsSelectComponent>
                                     </v-col>
@@ -49,7 +58,7 @@
                                 </v-row>
                             </v-col>
                             <v-col class="col-md-2">
-                                <v-btn color="yellow" block class="rounded-lg font-weight-bold mt-7">
+                                <v-btn color="yellow" block class="rounded-lg font-weight-bold mt-7" @click="getAnalysis()">
                                     Search&nbsp;<v-icon>mdi-magnify</v-icon>
                                 </v-btn>
                             </v-col>
@@ -57,11 +66,43 @@
                     </v-card-title>
                     <v-data-table :headers="headers" @click:row="showRawData($event)" :items="items.data"
                         hide-default-footer class="elevation-1">
+                        <template v-slot:item.subject="{ item }">
+                            {{ item.subject.substr(0,100) }}
+                        </template>
                         <template v-slot:item.actions="{ item }">
                             <v-btn-toggle color="primary">
-                                <v-btn color="yellow" :to="`/analysis/edit/${item.id}`">
+                                <v-btn color="yellow" small :to="`/analysis/edit/${item.id}`">
                                     <v-icon>mdi-eye</v-icon>
                                 </v-btn>
+                                <v-menu top :close-on-click="closeOnClick">
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-btn color="yellow" small v-bind="attrs" v-on="on">
+                                            <v-icon>mdi-format-list-bulleted</v-icon>
+                                        </v-btn>
+                                    </template>
+                                    <v-list>
+                                        <v-list-item :to="`/analysis/files/${item.id}`">
+                                            <v-list-item-title>Documentos</v-list-item-title>
+                                        </v-list-item>
+                                        <v-list-item>
+                                            <v-list-item-title>Usuarios</v-list-item-title>
+                                        </v-list-item>
+                                        <v-list-item :to="`/analysis/history/${item.id}`">
+                                            <v-list-item-title >Historia</v-list-item-title>
+                                        </v-list-item>
+                                        <v-list-item>
+                                            <v-list-item-title>Imprimir etiquetas</v-list-item-title>
+                                        </v-list-item>
+                                        <v-list-item  :to="`/analysis/report/${item.id}`">
+                                            <v-list-item-title>Reporte</v-list-item-title>
+                                        </v-list-item>
+                                        <v-list-item>
+                                            <v-list-item-title>Eliminar</v-list-item-title>
+                                        </v-list-item>
+
+                                    </v-list>
+                                </v-menu>
+
                             </v-btn-toggle>
                         </template>
                     </v-data-table>
@@ -77,6 +118,11 @@
     import moment from 'moment'
     import axios from 'axios'
     import exideJson from '~/static/exide.json'
+    import VueExcelXlsx from "vue-excel-xlsx";
+    import Vue from "vue";
+
+    Vue.use(VueExcelXlsx);
+
     export default {
         data() {
             return {
@@ -127,15 +173,9 @@
                     },
                 ],
                 search: {
-                    laboratory: {
-                        $contains: ''
-                    },
-                    requestor: {
-                        $contains: ''
-                    },
-                    techinician: {
-                        $contains: ''
-                    },
+                    laboratory: {},
+                    requestor: {},
+                    technician: {},
                     expectedDate: {
                         $gte: '',
                         $lte: ''
@@ -172,6 +212,9 @@
             getAnalysis() {
                 this.clients = []
                 this.$axios.get('/analyses/?populate=*', {
+                    params: {
+                        filters: this.search
+                    },
                     paramsSerializer: params => {
                         return qs.stringify(params, {
                             arrayFormat: 'brackets'
@@ -184,6 +227,16 @@
             },
             showRawData($e) {
                 this.$router.push(`/analysis/rawdata/${$e.id}`)
+            }
+        },
+        computed: {
+            excelColumns() {
+                return this.headers.map((item) => {
+                    return {
+                        label: item.text,
+                        field: item.value
+                    }
+                })
             }
         }
     }

@@ -50,7 +50,8 @@
                                     </v-toolbar-title>
                                 </v-toolbar>
                                 <v-card-text>
-                                    <v-textarea :rules="rules.required" outlined v-model="analysis.subject"></v-textarea>
+                                    <v-textarea :rules="rules.required" outlined v-model="analysis.subject">
+                                    </v-textarea>
                                 </v-card-text>
                             </v-card>
                         </v-col>
@@ -76,7 +77,8 @@
                                     </v-btn-toggle>
                                 </v-toolbar>
                                 <div v-for="(sample,index) in analysis.samples" :key="index">
-                                    <v-text-field v-model="analysis.samples[index].name"  :rules="rules.required"></v-text-field>
+                                    <v-text-field v-model="analysis.samples[index].name" :rules="rules.required">
+                                    </v-text-field>
                                 </div>
                                 <v-card-subtitle class="font-weight-bold black--text">Samples back*:</v-card-subtitle>
                                 <v-card-actions>
@@ -93,7 +95,7 @@
                                 </v-toolbar>
                                 <divider></divider>
                                 <v-card-text>
-                                    <row>
+                                    <v-row>
                                         <v-col class="col-12">
                                             <v-card outlined>
                                                 <v-row no-gutters class="grey lighten-2">
@@ -113,11 +115,12 @@
                                                     </v-col>
                                                 </v-row>
                                                 <v-row no-gutters>
-                                                    <v-col class="col-6" v-for="(label,index) in chemicalAnalysisItems"
-                                                        :key="index">
-                                                        <v-checkbox :label="label" :value="label"
+                                                    <v-col class="col-6"
+                                                        v-for="(normative,index) in chemicalAnalysisItems" :key="index">
+                                                        <v-checkbox :label="normative.description" :value="normative.id"
                                                             v-model="analysis.samples[sindex].chemicalAnalysis"
                                                             class="font-weight-bold black--text"></v-checkbox>
+                                                            <v-select flat label="Select an option" dense item-text="description" item-value="id"></v-select>
                                                     </v-col>
                                                 </v-row>
                                             </v-card>
@@ -141,18 +144,19 @@
                                                     </v-col>
                                                 </v-row>
                                                 <v-row no-gutters>
-                                                    <v-col class="col-6" v-for="(label,index) in phisicalAnalysisItems"
+                                                    <v-col class="col-6" v-for="(normative,index) in phisicalAnalysisItems"
                                                         :key="index">
-                                                        <v-checkbox :label="label" :value="label"
+                                                        <v-checkbox  :label="normative.description" :value="normative.id"
                                                             v-model="analysis.samples[sindex].phisicalAnalysis"
                                                             class="font-weight-bold black--text"></v-checkbox>
+                                                            <v-select flat label="Select an option" dense item-text="description" item-value="id"></v-select>
 
                                                     </v-col>
                                                 </v-row>
                                             </v-card>
                                         </v-col>
 
-                                    </row>
+                                    </v-row>
                                 </v-card-text>
                             </v-card>
                         </v-col>
@@ -175,7 +179,7 @@
                         </v-col>
                         <v-col class="col-md-6 col-12">
                             <FormsFieldsSelectComponent type="date" v-model="analysis.status" dense
-                                :items="comboInfo.listaStatus"></FormsFieldsSelectComponent>
+                                :items="statusItems"></FormsFieldsSelectComponent>
                         </v-col>
 
                         <v-col class="col-md-6 col-12">
@@ -198,7 +202,7 @@
                             <b class="black--text">Nombre solicitante</b>
                         </v-col>
                         <v-col class="col-md-6 col-12">
-                            <FormsFieldsSelectComponent v-model="analysis.aplicantName" dense
+                            <FormsFieldsSelectComponent v-model="analysis.applicantName" dense
                                 :items="comboInfo.listaRequestor"></FormsFieldsSelectComponent>
                         </v-col>
 
@@ -228,47 +232,11 @@
     export default {
         data() {
             return {
-                exideJson:exideJson,
-                rules:{
-                    required:[(v) => !!v || 'This field is required']
+                exideJson: exideJson,
+                rules: {
+                    required: [(v) => !!v || 'This field is required']
                 },
-                snackBarSuccess:false,
-                chemicalAnalysisItems: [
-                    'ICP-OES',
-                    'H3PO4 (BD)',
-                    'ICP-OES: Additives (AZ)',
-                    'SiO2 (BD)',
-                    '% Carbon-C-S Analyzer',
-                    'Chlorides, Cl- (BD)',
-                    '% PbSO4 -C-S Analyzer',
-                    'Anions (BD)',
-                    'H2SO4',
-                    'Separators',
-                    '% Free Lead',
-                    'Moisture',
-                    '% Pbo2',
-                    'pH',
-                    '%Pbo',
-                ],
-                phisicalAnalysisItems: [
-                    'Porosity (AZ)',
-                    'Electrical Resistivity (AZ)',
-                    'BET (AZ)',
-                    'Tensile Testing',
-                    'Metallographic',
-                    'Thickness',
-                    'Stereoscopic Microscopy',
-                    'Hardness',
-                    'Separators',
-                    'Corrsion test',
-                    'X-Ray (BD)',
-                    'Moisture',
-                    'Oxidation Resistance',
-                    'Weight',
-                    'Mass adhesion',
-                    'Allow composition Spark Emission (BD)',
-                    'Other',
-                ],
+                snackBarSuccess: false,
                 statusItems: [
                     'Peticion hecha',
                     'Peticion aceptada',
@@ -279,6 +247,9 @@
                     'Muestras tiradas',
                     'Cancelado'
                 ],
+                normativeItems: {
+                    data: []
+                },
                 analysis: {
                     project: [],
                     subject: '',
@@ -292,13 +263,13 @@
                     status: '',
                     samples_back: false
                 },
-                comboInfo:{
-                    listaLaboratory:[],
-                    listaPlant:[],
-                    listaRequestor:[],
-                    listaLabTechnician:[],
-                    listaStatus:[]
-     
+                comboInfo: {
+                    listaLaboratory: [],
+                    listaPlant: [],
+                    listaRequestor: [],
+                    listaLabTechnician: [],
+                    listaStatus: []
+
                 }
 
             }
@@ -307,12 +278,29 @@
         created() {
             this.getAnalysis()
             this.getComboInfo()
-    },
+            this.getNormatives()
+        },
         methods: {
             getAnalysis() {
                 const idAnalysis = this.$route.params.id
-                this.$axios.get(`/analyses/${idAnalysis}/?populate=*`).then((response) => {
+                this.$axios.get(`/analyses/${idAnalysis}/?populate=deep`).then((response) => {
+                    const formatAnalysis = function(samples) {
+                        return samples.map((sample) => {
+                            return {
+                                ...sample,
+                                phisicalAnalysis: sample.phisicalAnalysis.map((analysis)=>{
+                                    return analysis.id
+                                }),
+                                chemicalAnalysis: sample.chemicalAnalysis.map((analysis)=>{
+                                    return analysis.id
+                                })
+                            }
+                        })
+                    }
+
+                    const samples = formatAnalysis(response.data.data.samples)
                     this.analysis = response.data.data
+                    this.analysis.samples = samples
                 })
             },
             addSample() {
@@ -332,19 +320,26 @@
             },
             getComboInfo() {
                 let result = {};
-                    for (let key in this.exideJson) {
-                        if (this.exideJson.hasOwnProperty(key) && typeof this.exideJson[key] === 'object') {
-                            result[key] = Object.values(this.exideJson[key]);
-                        }
+                for (let key in this.exideJson) {
+                    if (this.exideJson.hasOwnProperty(key) && typeof this.exideJson[key] === 'object') {
+                        result[key] = Object.values(this.exideJson[key]);
                     }
-                    this.comboInfo =  result
+                }
+                this.comboInfo = result
             },
-
-
+            getNormatives() {
+                this.$axios.get('/normative-steps/?populate=*')
+                    .then(response => {
+                        this.normativeItems = response.data
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+            },
             editAnalysis() {
-                if(!this.$refs.form.validate()) return
+                if (!this.$refs.form.validate()) return
                 this.$axios.put('/analyses/' + this.analysis.id, {
-                    data:this.analysis
+                    data: this.analysis
                 }).then((response) => {
                     this.snackBarSuccess = true
                     setTimeout(() => {
@@ -353,6 +348,24 @@
                 })
                 console.log(this.analysis)
             }
+        },
+        computed: {
+            chemicalAnalysisItems() {
+                var data = []
+                data = this.normativeItems.data.filter((n)=>{
+                    return n.normative?.type =='Chemical'
+                })
+                return data
+            },
+            phisicalAnalysisItems() {
+                var data = []
+                data = this.normativeItems.data.filter((n)=>{
+                    return n.normative?.type =='Phisical'
+                })
+                return data
+            }
+
+
         }
     }
 </script>

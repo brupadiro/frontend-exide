@@ -18,14 +18,20 @@
                     <v-data-table hide-default-footer :headers="headers" :items="normativeItems.data">
                         <template v-slot:item.RecordCreateUser>
                             admin@ensayobaterias.net
-                    </template>
+                        </template>
 
                         <template v-slot:[`item.Actions`]="{ item }">
-                        <v-btn color="grey" class="white--text font-weight-bold" :to="`/normative/normativeSteps/${item.id}`" small>
-                            Opciones
-                        </v-btn>
-                    </template>
-                </v-data-table>
+                            <v-btn-toggle>
+                                <v-btn color="yellow" class="black--text font-weight-bold"
+                                    :to="`/normative/normativeSteps/${item.id}`" small>
+                                    Ver
+                                </v-btn>
+                                <v-btn color="red" class="white--text font-weight-bold" @click="deleteNormative(item.id)" small>
+                                    <v-icon>mdi-delete</v-icon>
+                                </v-btn>
+                            </v-btn-toggle>
+                        </template>
+                    </v-data-table>
 
                 </GeneralCardComponent>
             </v-col>
@@ -42,16 +48,23 @@
                 <v-card-text>
                     <v-row>
                         <v-col class="col-12">
-                            <FormsFieldsTextComponent label="Normative" v-model="normative.name"></FormsFieldsTextComponent>
+                            <FormsFieldsTextComponent label="Normative" v-model="normative.name">
+                            </FormsFieldsTextComponent>
                         </v-col>
                         <v-col class="col-12">
-                            <FormsFieldsTextComponent label="Initials" v-model="normative.initials"></FormsFieldsTextComponent>
+                            <FormsFieldsSelectComponent :items="[{text:'Quimico',value:'Chemical'},{text:'Fisico',value:'Phisical'}]" label="Type" v-model="normative.type">
+                            </FormsFieldsSelectComponent>
+                        </v-col>
+                        <v-col class="col-12">
+                            <FormsFieldsTextComponent label="Initials" v-model="normative.initials">
+                            </FormsFieldsTextComponent>
                         </v-col>
                     </v-row>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="yellow" class="rounded-lg font-weight-black" @click="createNormative()">Create normative</v-btn>
+                    <v-btn color="yellow" class="rounded-lg font-weight-black" @click="createNormative()">Create
+                        normative</v-btn>
                 </v-card-actions>
             </GeneralCardComponent>
         </v-dialog>
@@ -63,15 +76,9 @@
         data() {
             return {
                 normativeDialog: false,
-                normative:{},
-                items: [{
-                    id: '1',
-                    Normative: 'TestNormative',
-                    Initials: 'TestInitial',
-                    RecordCreateUser: 'admin@ensayobaterias.net',
-                    RecordCreateDate: '6/7/2023',
-                    Actions: ''
-                }],
+                normative: {
+                    type:'Chemical'
+                },
                 headers: [{
                         value: 'id',
                         text: 'ID'
@@ -79,6 +86,10 @@
                     {
                         value: 'name',
                         text: 'Normative'
+                    },
+                    {
+                        value: 'type',
+                        text: 'type'
                     },
                     {
                         value: 'initials',
@@ -96,8 +107,8 @@
                         text: 'Actions'
                     }
                 ],
-                normativeItems:{
-                    data:[]
+                normativeItems: {
+                    data: []
                 }
             }
         },
@@ -122,10 +133,19 @@
             },
             createNormative() {
                 this.$axios.post('/normatives', {
-                    data:this.normative
-                })
+                        data: this.normative
+                    })
                     .then(response => {
                         this.normativeDialog = false
+                        this.getNormatives()
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+            },
+            deleteNormative(id) {
+                this.$axios.delete('/normatives/'+id)
+                    .then(response => {
                         this.getNormatives()
                     })
                     .catch(error => {

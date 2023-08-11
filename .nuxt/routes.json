@@ -3,126 +3,189 @@
     "name": "analysis",
     "path": "/analysis",
     "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/analysis/index.vue",
-    "chunkName": "pages/analysis/index"
+    "chunkName": "pages/analysis/index",
+    "_name": "_663acff6"
   },
   {
     "name": "clients",
     "path": "/clients",
     "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/clients/index.vue",
-    "chunkName": "pages/clients/index"
+    "chunkName": "pages/clients/index",
+    "_name": "_66c66f56"
   },
   {
     "name": "inspire",
     "path": "/inspire",
     "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/inspire.vue",
-    "chunkName": "pages/inspire"
+    "chunkName": "pages/inspire",
+    "_name": "_3decbb24"
   },
   {
     "name": "location",
     "path": "/location",
     "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/location/index.vue",
-    "chunkName": "pages/location/index"
+    "chunkName": "pages/location/index",
+    "_name": "_01c6899e"
   },
   {
     "name": "normative",
     "path": "/normative",
     "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/normative/index.vue",
-    "chunkName": "pages/normative/index"
+    "chunkName": "pages/normative/index",
+    "_name": "_92d9dbd4"
   },
   {
     "name": "users",
     "path": "/users",
     "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/users/index.vue",
-    "chunkName": "pages/users/index"
+    "chunkName": "pages/users/index",
+    "_name": "_9cbd1656"
   },
   {
     "name": "accounts-login",
     "path": "/accounts/login",
     "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/accounts/login.vue",
-    "chunkName": "pages/accounts/login"
+    "chunkName": "pages/accounts/login",
+    "_name": "_148f7fa6"
   },
   {
     "name": "analysis-create",
     "path": "/analysis/create",
     "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/analysis/create.vue",
-    "chunkName": "pages/analysis/create"
+    "chunkName": "pages/analysis/create",
+    "_name": "_11b6994e"
   },
   {
     "name": "location-create",
     "path": "/location/create",
     "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/location/create.vue",
-    "chunkName": "pages/location/create"
+    "chunkName": "pages/location/create",
+    "_name": "_5ebef4e0"
   },
   {
     "name": "normative-create",
     "path": "/normative/create",
     "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/normative/create.vue",
-    "chunkName": "pages/normative/create"
-  },
-  {
-    "name": "normative-normativeStepFields",
-    "path": "/normative/normativeStepFields",
-    "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/normative/normativeStepFields.vue",
-    "chunkName": "pages/normative/normativeStepFields"
+    "chunkName": "pages/normative/create",
+    "_name": "_43837b68"
   },
   {
     "name": "security-rols",
     "path": "/security/rols",
     "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/security/rols/index.vue",
-    "chunkName": "pages/security/rols/index"
+    "chunkName": "pages/security/rols/index",
+    "_name": "_dfc56600"
   },
   {
     "name": "security-users",
     "path": "/security/users",
     "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/security/users/index.vue",
-    "chunkName": "pages/security/users/index"
+    "chunkName": "pages/security/users/index",
+    "_name": "_f0ffc63c"
+  },
+  {
+    "name": "analysis-rawdata-copy",
+    "path": "/analysis/rawdata/copy",
+    "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/analysis/rawdata/copy.vue",
+    "chunkName": "pages/analysis/rawdata/copy",
+    "_name": "_d6c421a2"
   },
   {
     "name": "security-users-create",
     "path": "/security/users/create",
     "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/security/users/create.vue",
-    "chunkName": "pages/security/users/create"
+    "chunkName": "pages/security/users/create",
+    "_name": "_df906bc8"
   },
   {
     "name": "security-rols-edit-id",
     "path": "/security/rols/edit/:id?",
     "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/security/rols/edit/_id.vue",
-    "chunkName": "pages/security/rols/edit/_id"
+    "chunkName": "pages/security/rols/edit/_id",
+    "_name": "_9db50412"
   },
   {
     "name": "security-users-edit-id",
     "path": "/security/users/edit/:id?",
     "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/security/users/edit/_id.vue",
-    "chunkName": "pages/security/users/edit/_id"
+    "chunkName": "pages/security/users/edit/_id",
+    "_name": "_45030ad5"
   },
   {
     "name": "analysis-edit-id",
     "path": "/analysis/edit/:id?",
     "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/analysis/edit/_id.vue",
-    "chunkName": "pages/analysis/edit/_id"
+    "chunkName": "pages/analysis/edit/_id",
+    "_name": "_b74ace5c"
+  },
+  {
+    "name": "analysis-files-id",
+    "path": "/analysis/files/:id?",
+    "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/analysis/files/_id.vue",
+    "chunkName": "pages/analysis/files/_id",
+    "_name": "_4cab77d5"
+  },
+  {
+    "name": "analysis-history-id",
+    "path": "/analysis/history/:id",
+    "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/analysis/history/_id/index.vue",
+    "chunkName": "pages/analysis/history/_id/index",
+    "_name": "_7f9f9996"
   },
   {
     "name": "analysis-rawdata-id",
     "path": "/analysis/rawdata/:id?",
     "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/analysis/rawdata/_id.vue",
-    "chunkName": "pages/analysis/rawdata/_id"
+    "chunkName": "pages/analysis/rawdata/_id",
+    "_name": "_ed782920"
+  },
+  {
+    "name": "analysis-report-id",
+    "path": "/analysis/report/:id?",
+    "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/analysis/report/_id.vue",
+    "chunkName": "pages/analysis/report/_id",
+    "_name": "_d1b6ae88"
   },
   {
     "name": "location-edit-id",
     "path": "/location/edit/:id?",
     "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/location/edit/_id.vue",
-    "chunkName": "pages/location/edit/_id"
+    "chunkName": "pages/location/edit/_id",
+    "_name": "_e32ad6ce"
+  },
+  {
+    "name": "normative-normativeStepFields-id",
+    "path": "/normative/normativeStepFields/:id?",
+    "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/normative/normativeStepFields/_id.vue",
+    "chunkName": "pages/normative/normativeStepFields/_id",
+    "_name": "_172e51fd"
   },
   {
     "name": "normative-normativeSteps-id",
     "path": "/normative/normativeSteps/:id?",
     "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/normative/normativeSteps/_id.vue",
-    "chunkName": "pages/normative/normativeSteps/_id"
+    "chunkName": "pages/normative/normativeSteps/_id",
+    "_name": "_58564d35"
+  },
+  {
+    "name": "analysis-history-id-create",
+    "path": "/analysis/history/:id?/create",
+    "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/analysis/history/_id/create.vue",
+    "chunkName": "pages/analysis/history/_id/create",
+    "_name": "_6d8a7e29"
+  },
+  {
+    "name": "analysis-history-id-update-id_history",
+    "path": "/analysis/history/:id?/update/:id_history?",
+    "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/analysis/history/_id/update/_id_history.vue",
+    "chunkName": "pages/analysis/history/_id/update/_id_history",
+    "_name": "_65d36c14"
   },
   {
     "name": "index",
     "path": "/",
     "component": "/Users/bruno/Documents/dev/Trabajo/EXIDE/frontend/pages/index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_45ee8cc8"
   }
 ]
