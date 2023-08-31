@@ -189,7 +189,6 @@
         computed:{
             computedHeaders() {
                 return [
-                    {text:'Sample',value:'sample',ecuation_field:false,readOnly:true},
                     ...this.headersTable,{text:'save',value:'save'}
                 ]
             }

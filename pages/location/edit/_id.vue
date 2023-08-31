@@ -116,6 +116,11 @@
                 </v-row>
             </v-card-text>
             <v-divider></v-divider>
+            <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn class="font-weight-bold black--text rounded-lg" color="yellow" @click="updateLocation()"> Update location</v-btn>
+            </v-card-actions>
+
         </generalCardComponent>
         <v-snackbar color="success">
             Location created successfully
@@ -163,8 +168,8 @@
             this.getLocation()
         },
         methods:{
-            createLocation(){
-                this.$axios.post('/locations',{
+            updateLocation(){
+                this.$axios.put(`/locations/${this.$route.params.id}`,{
                     data:this.location
                 }).then(()=>{
                     this.locationSnackbar=true

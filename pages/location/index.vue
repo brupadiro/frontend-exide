@@ -16,7 +16,7 @@
                     <v-card-title dense class="primary" :elevation="0">
                         <v-row>
                             <v-col class="col-md-5 col-12">
-                                <FormsFieldsSelectComponent dense v-model="search.laboratory.$contains" label-color="white--text"
+                                <FormsFieldsSelectComponent dense v-model="search.plant.$contains" label-color="white--text"
                                     :items="comboInfo.listaPlant" label="Laboratory"></FormsFieldsSelectComponent>
                             </v-col>
                             <v-col class="col-md-5 col-12">
@@ -108,7 +108,7 @@
                     data: []
                 },
                 search:{
-                    laboratory:{
+                    plant:{
                         $contains:''
                     },
                     typology:{

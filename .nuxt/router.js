@@ -4,33 +4,33 @@ import { normalizeURL, decode } from 'ufo'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-import _663acff6 from '../pages/analysis/index.vue'
-import _66c66f56 from '../pages/clients/index.vue'
-import _3decbb24 from '../pages/inspire.vue'
-import _01c6899e from '../pages/location/index.vue'
-import _92d9dbd4 from '../pages/normative/index.vue'
-import _9cbd1656 from '../pages/users/index.vue'
-import _148f7fa6 from '../pages/accounts/login.vue'
-import _11b6994e from '../pages/analysis/create.vue'
-import _5ebef4e0 from '../pages/location/create.vue'
-import _43837b68 from '../pages/normative/create.vue'
-import _dfc56600 from '../pages/security/rols/index.vue'
-import _f0ffc63c from '../pages/security/users/index.vue'
-import _d6c421a2 from '../pages/analysis/rawdata/copy.vue'
-import _df906bc8 from '../pages/security/users/create.vue'
-import _9db50412 from '../pages/security/rols/edit/_id.vue'
-import _45030ad5 from '../pages/security/users/edit/_id.vue'
-import _b74ace5c from '../pages/analysis/edit/_id.vue'
-import _4cab77d5 from '../pages/analysis/files/_id.vue'
-import _7f9f9996 from '../pages/analysis/history/_id/index.vue'
-import _ed782920 from '../pages/analysis/rawdata/_id.vue'
-import _d1b6ae88 from '../pages/analysis/report/_id.vue'
-import _e32ad6ce from '../pages/location/edit/_id.vue'
-import _172e51fd from '../pages/normative/normativeStepFields/_id.vue'
-import _58564d35 from '../pages/normative/normativeSteps/_id.vue'
-import _6d8a7e29 from '../pages/analysis/history/_id/create.vue'
-import _65d36c14 from '../pages/analysis/history/_id/update/_id_history.vue'
-import _45ee8cc8 from '../pages/index.vue'
+import _18556586 from '../pages/analysis/index.vue'
+import _433ae7c6 from '../pages/clients/index.vue'
+import _7922f4ec from '../pages/inspire.vue'
+import _28b93ed6 from '../pages/location/index.vue'
+import _6df703de from '../pages/normative/index.vue'
+import _dfd4eac6 from '../pages/users/index.vue'
+import _3b8234de from '../pages/accounts/login.vue'
+import _a2eeb5be from '../pages/analysis/create.vue'
+import _1622e6a8 from '../pages/location/create.vue'
+import _789dc2a0 from '../pages/normative/create.vue'
+import _2d231ac8 from '../pages/security/rols/index.vue'
+import _e997efcc from '../pages/security/users/index.vue'
+import _07676af7 from '../pages/analysis/rawdata/copy.vue'
+import _030145e4 from '../pages/security/users/create.vue'
+import _d0e909a2 from '../pages/security/rols/edit/_id.vue'
+import _2b5cb49d from '../pages/security/users/edit/_id.vue'
+import _1289389a from '../pages/analysis/edit/_id.vue'
+import _b75e5de6 from '../pages/analysis/files/_id.vue'
+import _47365726 from '../pages/analysis/history/_id/index.vue'
+import _e61052b0 from '../pages/analysis/rawdata/_id.vue'
+import _342a7684 from '../pages/analysis/report/_id.vue'
+import _06cd973e from '../pages/location/edit/_id.vue'
+import _22173c76 from '../pages/normative/normativeStepFields/_id.vue'
+import _39e7806d from '../pages/normative/normativeSteps/_id.vue'
+import _502bf81e from '../pages/analysis/history/_id/create.vue'
+import _09b363be from '../pages/analysis/history/_id/update/_id_history.vue'
+import _5292c564 from '../pages/index.vue'
 
 const emptyFn = () => {}
 
@@ -45,111 +45,111 @@ export const routerOptions = {
 
   routes: [{
     path: "/analysis",
-    component: _663acff6,
+    component: _18556586,
     name: "analysis"
   }, {
     path: "/clients",
-    component: _66c66f56,
+    component: _433ae7c6,
     name: "clients"
   }, {
     path: "/inspire",
-    component: _3decbb24,
+    component: _7922f4ec,
     name: "inspire"
   }, {
     path: "/location",
-    component: _01c6899e,
+    component: _28b93ed6,
     name: "location"
   }, {
     path: "/normative",
-    component: _92d9dbd4,
+    component: _6df703de,
     name: "normative"
   }, {
     path: "/users",
-    component: _9cbd1656,
+    component: _dfd4eac6,
     name: "users"
   }, {
     path: "/accounts/login",
-    component: _148f7fa6,
+    component: _3b8234de,
     name: "accounts-login"
   }, {
     path: "/analysis/create",
-    component: _11b6994e,
+    component: _a2eeb5be,
     name: "analysis-create"
   }, {
     path: "/location/create",
-    component: _5ebef4e0,
+    component: _1622e6a8,
     name: "location-create"
   }, {
     path: "/normative/create",
-    component: _43837b68,
+    component: _789dc2a0,
     name: "normative-create"
   }, {
     path: "/security/rols",
-    component: _dfc56600,
+    component: _2d231ac8,
     name: "security-rols"
   }, {
     path: "/security/users",
-    component: _f0ffc63c,
+    component: _e997efcc,
     name: "security-users"
   }, {
     path: "/analysis/rawdata/copy",
-    component: _d6c421a2,
+    component: _07676af7,
     name: "analysis-rawdata-copy"
   }, {
     path: "/security/users/create",
-    component: _df906bc8,
+    component: _030145e4,
     name: "security-users-create"
   }, {
     path: "/security/rols/edit/:id?",
-    component: _9db50412,
+    component: _d0e909a2,
     name: "security-rols-edit-id"
   }, {
     path: "/security/users/edit/:id?",
-    component: _45030ad5,
+    component: _2b5cb49d,
     name: "security-users-edit-id"
   }, {
     path: "/analysis/edit/:id?",
-    component: _b74ace5c,
+    component: _1289389a,
     name: "analysis-edit-id"
   }, {
     path: "/analysis/files/:id?",
-    component: _4cab77d5,
+    component: _b75e5de6,
     name: "analysis-files-id"
   }, {
     path: "/analysis/history/:id",
-    component: _7f9f9996,
+    component: _47365726,
     name: "analysis-history-id"
   }, {
     path: "/analysis/rawdata/:id?",
-    component: _ed782920,
+    component: _e61052b0,
     name: "analysis-rawdata-id"
   }, {
     path: "/analysis/report/:id?",
-    component: _d1b6ae88,
+    component: _342a7684,
     name: "analysis-report-id"
   }, {
     path: "/location/edit/:id?",
-    component: _e32ad6ce,
+    component: _06cd973e,
     name: "location-edit-id"
   }, {
     path: "/normative/normativeStepFields/:id?",
-    component: _172e51fd,
+    component: _22173c76,
     name: "normative-normativeStepFields-id"
   }, {
     path: "/normative/normativeSteps/:id?",
-    component: _58564d35,
+    component: _39e7806d,
     name: "normative-normativeSteps-id"
   }, {
     path: "/analysis/history/:id?/create",
-    component: _6d8a7e29,
+    component: _502bf81e,
     name: "analysis-history-id-create"
   }, {
     path: "/analysis/history/:id?/update/:id_history?",
-    component: _65d36c14,
+    component: _09b363be,
     name: "analysis-history-id-update-id_history"
   }, {
     path: "/",
-    component: _45ee8cc8,
+    component: _5292c564,
     name: "index"
   }],
 
