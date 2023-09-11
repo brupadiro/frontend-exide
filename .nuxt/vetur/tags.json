@@ -8,9 +8,6 @@
   "VuetifyLogo": {
     "description": "Auto imported from components/VuetifyLogo.vue"
   },
-  "AccountsRegisterComponent": {
-    "description": "Auto imported from components/accounts/registerComponent.vue"
-  },
   "AccountingCashFlowComponent": {
     "description": "Auto imported from components/accounting/cashFlowComponent.vue"
   },
@@ -22,6 +19,9 @@
   },
   "AccountingResumeComponent": {
     "description": "Auto imported from components/accounting/resumeComponent.vue"
+  },
+  "AccountsRegisterComponent": {
+    "description": "Auto imported from components/accounts/registerComponent.vue"
   },
   "AnalysisTabComponent": {
     "description": "Auto imported from components/analysis/tabComponent.vue"

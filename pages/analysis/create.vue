@@ -8,6 +8,9 @@
                 <v-card-text>
                     <v-row>
                         <v-col class="col-12">
+                            <v-text-field :rules="rules.required" label="Batch Number" outlined v-model="analysis.subject"></v-text-field>
+                        </v-col>
+                        <v-col class="col-12">
                             <v-card outlined>
                                 <v-toolbar color="grey lighten-2" tile elevation="0" dense>
                                     <v-toolbar-title class="text-subtitle-1 font-weight-bold">Project/ECN*:

@@ -28,6 +28,9 @@
             <FormsFieldsSelectComponent dense label-color="white--text" class="mb-2 mr-3"
                 :items="comboInfo.listaLaboratory" v-model="value.laboratory" placeholder="Laboratory">
             </FormsFieldsSelectComponent>
+            <FormsFieldsSelectComponent dense label-color="white--text" class="mb-2 mr-3"
+                :items="comboInfo.listaLaboratory" v-model="value.laboratory" placeholder="Laboratory">
+            </FormsFieldsSelectComponent>
             <v-btn color="yellow font-weight-bold black--text" class="rounded-lg"
                 @click="saveItem(sample.id,items.id,type)">
                 Add item</v-btn>

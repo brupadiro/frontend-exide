@@ -66,9 +66,13 @@
                     </v-card-title>
                     <v-data-table :headers="headers" @click:row="showRawData($event)" :items="items.data"
                         hide-default-footer class="elevation-1">
+                        <template v-slot:item.code="{ item }">
+                            CH0000{{ item.id }}
+                        </template>
                         <template v-slot:item.subject="{ item }">
                             {{ item.subject.substr(0,100) }}
                         </template>
+
                         <template v-slot:item.actions="{ item }">
                             <v-btn-toggle color="primary">
                                 <v-btn color="yellow" small :to="`/analysis/edit/${item.id}`">

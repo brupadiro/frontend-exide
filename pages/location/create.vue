@@ -43,7 +43,7 @@
                                                 </formsFieldsTextComponent>
                                             </td>
                                             <td>
-                                                <formsFieldsTextComponent v-model="location.occuped" type="number" single-line>
+                                                <formsFieldsTextComponent readonly v-model="location.occuped" type="number" single-line>
                                                 </formsFieldsTextComponent>
                                             </td>
                                             <td>
@@ -66,9 +66,14 @@
                                                 </v-input>
                                             </td>
                                             <td>
-                                                <FormsFieldsSelectComponent v-model="location.typology"
-                                                    :items="['Circuit', 'Bath', 'Fridge', 'Vibration', 'Warehouse', 'Other']"
+                                                <v-input>
+                                                    <FormsFieldsSelectComponent v-model="location.typology"
+                                                    :items="listaTipology"
                                                     label="Typology"></FormsFieldsSelectComponent>
+                                                    <v-btn icon class="mt-5" @click="tipologyDialog = true">
+                                                        <v-icon>mdi-plus</v-icon>
+                                                    </v-btn>
+                                                </v-input>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -127,6 +132,32 @@
                 Close
             </v-btn>
         </v-snackbar>
+        <v-dialog v-model="tipologyDialog" persistent max-width="600">
+            <GeneralCardComponent >
+                <GeneralCardTitleComponent>Add tipology
+                    <v-spacer></v-spacer>
+                    <v-btn icon @click="tipologyDialog = false">
+                        <v-icon>mdi-close</v-icon>
+                    </v-btn>
+                </GeneralCardTitleComponent>
+                <v-divider></v-divider>
+                <v-card-text>
+                    <v-form ref="form">
+
+                    <v-row>
+                        <v-col class="col-12">
+                            <FormsFieldsTextComponent label="Nombre" v-model="tipologyValue">
+                            </FormsFieldsTextComponent>
+                        </v-col>
+                    </v-row>
+                </v-form>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="yellow" class="rounded-lg font-weight-black" @click="addTipology()">Add</v-btn>
+                </v-card-actions>
+            </GeneralCardComponent>
+        </v-dialog>
     </v-container>
 </template>
 
@@ -150,6 +181,8 @@
                     moduleType:'Quimico'
 
                 },
+                tipologyDialog:false,
+                tipologyValue:"",
                 comboInfo:{
                     listaLaboratory:[],
                     listaPlant:[],
@@ -157,9 +190,8 @@
                     listaLabTechnician:[],
                     listaStatus:[]
      
-                }
-
-
+                },
+                listaTipology:['Circuit', 'Bath', 'Fridge', 'Vibration', 'Warehouse', 'Other']
             }
         },
         created() {
@@ -185,7 +217,21 @@
                     }
                     this.comboInfo =  result
             },
+            addTipology(){
+                if(this.tipologyValue == "") return
+                this.listaTipology.push(this.tipologyValue)
+                this.tipologyDialog=false
+            }
 
+        },
+        watch:{
+            "location.batteries":function(val){
+                this.location.occuped = (val / this.location.capacity) * 100 
+            },
+            "location.capacity":function(val){
+                this.location.occuped = (this.location.batteries / val) * 100 
+                
+            }
         }
     }
 </script>
