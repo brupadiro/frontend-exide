@@ -15,19 +15,19 @@
           <v-list-group v-if="item.subItems" :key="i"  :value="i==0"  no-action>
             <template v-slot:activator>
               <v-list-item-content>
-                <v-btn text color="white" block height="50" class="btn-navigation"
-                  active-class="btn-navigation-active secondary primary black--text">
+                <v-btn text color="primary" block height="50" class="btn-navigation"
+                  active-class="btn-navigation-active secondary primary black--text font-weight-bold">
                   <v-icon>ion-md-arrow-dropdown</v-icon>
-                  <span>{{item.title}}</span>
+                  <span class="black--text">{{item.title}}</span>
                 </v-btn>
               </v-list-item-content>
             </template>
             <template v-for="(subItem,si) in item.subItems">
               <v-list-item class="pl-6 primary lighten-1 subitem-tab" link :to="subItem.to"  :key="'s'+si">
               <v-list-item-content>
-                <v-btn small text color="white" block height="30" class="btn-navigation"
+                <v-btn small text color="white" block height="30" class="btn-navigation py-6"
                   active-class="black--text" :to="subItem.to" exact>
-                  <span>{{subItem.title}}</span>
+                  <span class="black--text py-3">{{subItem.title}}</span>
                 </v-btn>
               </v-list-item-content>
             </v-list-item>
@@ -65,8 +65,8 @@
 
         <v-bottom-sheet v-if="item.subItems" :key="i" class="rounded-t-xl">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn v-bind="attrs"  class="white--text font-weight-bold" v-on="on">
-              <span class="white--text">{{ item.title }}</span>
+            <v-btn v-bind="attrs"  class="black--text font-weight-bold" v-on="on">
+              <span class="black--text">{{ item.title }}</span>
             </v-btn>
           </template>
           <v-list color="primary">
@@ -138,7 +138,7 @@
   }
 
   .btn-navigation {
-    border: 1px solid #80808024;
+    border: 1px solid #ffffffd9;
     border-radius: 15px !important;
     padding: 0 !important;
 

@@ -17,7 +17,6 @@ import nuxt_plugin_plugin_07c900a4 from 'nuxt_plugin_plugin_07c900a4' // Source:
 import nuxt_plugin_plugin_2deaa5ca from 'nuxt_plugin_plugin_2deaa5ca' // Source: ./vuetify/plugin.js (mode: 'all')
 import nuxt_plugin_workbox_37e2f056 from 'nuxt_plugin_workbox_37e2f056' // Source: ./workbox.js (mode: 'client')
 import nuxt_plugin_metaplugin_236cfd2e from 'nuxt_plugin_metaplugin_236cfd2e' // Source: ./pwa/meta.plugin.js (mode: 'all')
-import nuxt_plugin_iconplugin_1a1db246 from 'nuxt_plugin_iconplugin_1a1db246' // Source: ./pwa/icon.plugin.js (mode: 'all')
 import nuxt_plugin_axios_6de7fc8c from 'nuxt_plugin_axios_6de7fc8c' // Source: ./axios.js (mode: 'all')
 import nuxt_plugin_dateFunctions_b0c5091e from 'nuxt_plugin_dateFunctions_b0c5091e' // Source: ../plugins/mixins/dateFunctions.js (mode: 'all')
 import nuxt_plugin_plugin_3c554914 from 'nuxt_plugin_plugin_3c554914' // Source: ./auth/plugin.js (mode: 'all')
@@ -85,7 +84,7 @@ async function createApp(ssrContext, config = {}) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"titleTemplate":"%s - frontend3","title":"frontend3","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":""},{"name":"format-detection","content":"telephone=no"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"}],"style":[],"script":[]},
+    head: {"titleTemplate":"Exide","title":"Exide","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":""},{"name":"format-detection","content":"telephone=no"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"}],"style":[],"script":[]},
 
     store,
     router,
@@ -229,10 +228,6 @@ async function createApp(ssrContext, config = {}) {
 
   if (typeof nuxt_plugin_metaplugin_236cfd2e === 'function') {
     await nuxt_plugin_metaplugin_236cfd2e(app.context, inject)
-  }
-
-  if (typeof nuxt_plugin_iconplugin_1a1db246 === 'function') {
-    await nuxt_plugin_iconplugin_1a1db246(app.context, inject)
   }
 
   if (typeof nuxt_plugin_axios_6de7fc8c === 'function') {

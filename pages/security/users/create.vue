@@ -83,6 +83,16 @@
                             <v-col class="col-12 col-md-12">
                                 <v-checkbox label="System Administrator"  v-model="user.system_administrator"></v-checkbox>
                             </v-col>
+                            <v-col class="col-12 col-md-12">
+                                <v-checkbox label="Supervisor"  v-model="user.supervisor"></v-checkbox>
+                            </v-col>
+                            <v-col class="col-12 col-md-12">
+                                <v-checkbox label="System Calibrador"  v-model="user.calibrador"></v-checkbox>
+                            </v-col>
+                            <v-col class="col-12 col-md-12">
+                                <v-checkbox label="Plant satelite"  v-model="user.plant_satelite"></v-checkbox>
+                            </v-col>
+
                         </v-row>
 
                     </v-card-text>

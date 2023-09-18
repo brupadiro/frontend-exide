@@ -9,8 +9,8 @@
 
                     <v-row>
                         <v-col class="col-12">
-                            <FormsFieldsTextComponent type="email" :rules="rules.required" label="mail From" v-model="history.mailFrom">
-                            </FormsFieldsTextComponent>
+                            <FormsFieldsSelectComponent type="email" multiple chips :items="['Project leader','System adminsitrator','Supervisor','System Calibrador','Plant satelite']" :rules="rules.required" label="mail to" v-model="history.mailFrom">
+                            </FormsFieldsSelectComponent>
                         </v-col>
                         <v-col class="col-12">
                             <FormsFieldsTextareaComponent  :rules="rules.required" label="Description" v-model="history.Description">

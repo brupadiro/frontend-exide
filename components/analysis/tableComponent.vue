@@ -1,7 +1,7 @@
 <template>
     <GeneralCardComponent flat>
         <v-data-table :items="itemsTable(sample.name,type,items.description)" calculate-widths
-            :headers="items.headerTable" hide-default-footer>
+            :headers="[...items.headerTable, {value: 'value_id', text: 'Eliminar'}]" hide-default-footer>
             <template v-slot:body = "{items, headers}">
                 <tr v-for="(item,index) in items" :key="`it`+index"> 
                     <td v-for="column in headers" class="text-center" :key="`cc`+column.id">
@@ -9,9 +9,11 @@
                             {{ item[column.value] }}
                         </span>
                         <span v-else>{{ ecuationValue(item, column)}}</span>
-                        
+                        <div v-if="column.value == 'id'">
+                            <v-btn small class="mt-3" color="red" ><v-icon>mdi-delete</v-icon></v-btn>
+                        </div>
                     </td>
-                    
+                    {{ item.value_id }}
                 </tr>
                 </template>
             <template v-slot:foot>
@@ -25,9 +27,6 @@
         </v-data-table>
         <v-card-actions>
             <v-spacer></v-spacer>
-            <FormsFieldsSelectComponent dense label-color="white--text" class="mb-2 mr-3"
-                :items="comboInfo.listaLaboratory" v-model="value.laboratory" placeholder="Laboratory">
-            </FormsFieldsSelectComponent>
             <FormsFieldsSelectComponent dense label-color="white--text" class="mb-2 mr-3"
                 :items="comboInfo.listaLaboratory" v-model="value.laboratory" placeholder="Laboratory">
             </FormsFieldsSelectComponent>
@@ -104,29 +103,21 @@
                 if (this.values && this.values[sampleName] && this.values[sampleName][type] &&
                     this.values[sampleName][type][item] !== undefined) {
                     return this.values[sampleName][type][item].data.map((item) => {
+                        console.log({
+                            id: item.id,
+                            ...item.row,
+                        })
                         return {
-                            ...item.row
-                        }
-                    });
-                }
-                return [];
-            },
-
-            headersTable(sampleName, type, item) {
-                if (this.values[sampleName]) console.log(this.values[sampleName][type])
-                if (this.values && this.values[sampleName] && this.values[sampleName][type] &&
-                    this.values[sampleName][type][item] !== undefined) {
-                    return this.values[sampleName][type][item].headers.map((item) => {
-                        return {
-                            ...item,
-                            value: item.text.replace(" ", "_"),
+                            value_id: item.id,
+                            ...item.row,
                         }
                     });
                 }
                 return [];
             },
             ecuationValue(item, column){
-
+                delete item.value_id;
+                
                 let letras = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
                 let nuevoDatos = Object.keys(item).reduce((obj, clave, i) => {
@@ -142,8 +133,22 @@
                     return 0
                 }
             },
-            
+            async deleteItem(itemId) {
+                console.log(itemId)
+                return
+                let confirmDelete = window.confirm('¿Estás seguro que deseas eliminar este elemento?');
+                if (confirmDelete) {
+                    try {
+                        await this.$axios.delete(`/analysis-values/${itemId}`);
+                        this.$root.$emit('getValues')
+                    } catch (error) {
+                        console.error(error);
+                    }
+                }
+            },
             async saveItem(sample, normative, type) {
+                let confirmDelete = window.confirm('¿Estás seguro que deseas agregar este elemento?');
+                if(!confirmDelete) return
                 await this.$axios.post('/analysis-values', {
                     data: {
                         sample: sample,

@@ -133,10 +133,13 @@
                 </GeneralCardTitleComponent>
                 <v-divider></v-divider>
                 <v-card-text>
-                    <v-data-table :headers="[{text:'Date',value:'createdAt'},{text:'Laboratory',value:'laboratory'}]"
+                    <v-data-table :headers="[{text:'Date',value:'createdAt'},{text:'Laboratory',value:'laboratory'},{text:'User',value:'user'}]"
                         :items="historialAnalysis" hide-default-footer>
                         <template v-slot:item.createdAt="{item}">
                             {{item.createdAt | formatDate}}
+                        </template>
+                        <template v-slot:item.user>
+                            admin@ensayobaterias.net
                         </template>
                     </v-data-table>
                 </v-card-text>

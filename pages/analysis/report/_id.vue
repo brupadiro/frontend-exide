@@ -94,7 +94,8 @@
                                         <th class="white--text">Einheit</th>
                                         <th class="white--text">Intensity</th>
                                     </tr>
-                                    <tr  v-if="analysisValues[sample.name]!=undefined" v-for="chemicalValues in analysisValues[sample.name]['chemical'][chemical.description]">
+                                            <!--
+    <tr  v-if="analysisValues[sample.name]!=undefined" v-for="chemicalValues in analysisValues[sample.name]['chemical'][chemical.description]">
                                         <td>{{ chemicalValues.Bezeichnun }}</td>
                                         <td>{{ chemicalValues.Rack }}</td>
                                         <td>{{ chemicalValues.Typ }}</td>
@@ -103,7 +104,7 @@
                                         <td>{{ chemicalValues.Einheit }}</td>
                                         <td>{{ chemicalValues.Intensity }}</td>
                                         </tr>
-
+                                    -->
                                 </template>
 
                                 <tr class="primary">
@@ -134,18 +135,12 @@
                                         <th class="white--text">Einheit</th>
                                         <th class="white--text">Intensity</th>
                                     </tr>
-
-                                    
+                                    <!--
                                     <tr v-if="analysisValues[sample.name]['phisical']!=undefined" v-for="phisicallValues in analysisValues[sample.name]['phisical'][phisical.description]">
-                                        <td>{{ phisicallValues.Bezeichnun }}</td>
-                                        <td>{{ phisicallValues.Rack }}</td>
-                                        <td>{{ phisicallValues.Typ }}</td>
-                                        <td>{{ phisicallValues.DalumUhrze }}</td>
-                                        <td>{{ phisicallValues.ElementBezeichnun }}</td>
-                                        <td>{{ phisicallValues.Einheit }}</td>
-                                        <td>{{ phisicallValues.Intensity }}</td>
-                                        </tr>
+                                        {{ phisicallValues }}
+                                    </tr>
 
+                                    -->
 
                                 </template>
 
@@ -155,7 +150,6 @@
                     </v-simple-table>
                 </GeneralCardComponent>
             </v-col>
-
 
         </v-row>
     </v-container>
