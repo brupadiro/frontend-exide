@@ -123,7 +123,7 @@
                 </GeneralCardComponent>
             </v-col>
         </v-row>
-        <v-dialog v-model="historicoModal" persistent max-width="600">
+        <v-dialog v-model="historicoModal" persistent max-width="800">
             <GeneralCardComponent>
                 <GeneralCardTitleComponent>Historical
                     <v-spacer></v-spacer>
@@ -133,7 +133,10 @@
                 </GeneralCardTitleComponent>
                 <v-divider></v-divider>
                 <v-card-text>
-                    <v-data-table :headers="[{text:'Date',value:'createdAt'},{text:'Laboratory',value:'laboratory'},{text:'User',value:'user'}]"
+                    <v-data-table :headers="[
+                        {text:'Date',value:'createdAt'},
+                        {text:'Laboratory',value:'laboratory'},
+                        {text:'Note',value:'notes'},{text:'User',value:'user'}]"
                         :items="historialAnalysis" hide-default-footer>
                         <template v-slot:item.createdAt="{item}">
                             {{item.createdAt | formatDate}}

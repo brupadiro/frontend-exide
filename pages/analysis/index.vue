@@ -67,10 +67,10 @@
                     <v-data-table :headers="headers" @click:row="showRawData($event)" :items="items.data"
                         hide-default-footer class="elevation-1">
                         <template v-slot:item.code="{ item }">
-                            CH0000{{ item.id }}
+                            CH0000{{ item.code }}
                         </template>
                         <template v-slot:item.subject="{ item }">
-                            {{ item.subject.substr(0,100) }}
+                            {{ formatSubject(item.subject) }}
                         </template>
 
                         <template v-slot:item.actions="{ item }">
@@ -78,7 +78,7 @@
                                 <v-btn color="yellow" small :to="`/analysis/edit/${item.id}`">
                                     <v-icon>mdi-eye</v-icon>
                                 </v-btn>
-                                <v-menu top :close-on-click="closeOnClick">
+                                <v-menu top>
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn color="yellow" small v-bind="attrs" v-on="on">
                                             <v-icon>mdi-format-list-bulleted</v-icon>
@@ -204,6 +204,12 @@
             this.getAnalysis()
         },
         methods: {
+            formatSubject(subject){
+                if(subject) {
+                    return `${subject.substr(0,100)}...`
+                }
+                return ""
+            },
             getComboInfo() {
                 let result = {};
                 for (let key in this.exideJson) {

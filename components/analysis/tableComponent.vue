@@ -1,7 +1,7 @@
 <template>
     <GeneralCardComponent flat>
-        <v-data-table :items="itemsTable(sample.name,type,items.description)" calculate-widths
-            :headers="[...items.headerTable, {value: 'value_id', text: 'Eliminar'}]" hide-default-footer>
+        <v-data-table dense :items="itemsTable(sample.name,type,items.description)" calculate-widths
+            :headers="headers" hide-default-footer>
             <template v-slot:body = "{items, headers}">
                 <tr v-for="(item,index) in items" :key="`it`+index"> 
                     <td v-for="column in headers" class="text-center" :key="`cc`+column.id">
@@ -9,15 +9,14 @@
                             {{ item[column.value] }}
                         </span>
                         <span v-else>{{ ecuationValue(item, column)}}</span>
-                        <div v-if="column.value == 'id'">
-                            <v-btn small class="mt-3" color="red" ><v-icon>mdi-delete</v-icon></v-btn>
+                        <div v-if="column.value == 'actions'">
+                            <v-btn small class="mt-3" color="red" @click="deleteItem(index)"><v-icon>mdi-delete</v-icon></v-btn>
                         </div>
                     </td>
-                    {{ item.value_id }}
                 </tr>
                 </template>
             <template v-slot:foot>
-                <tr>
+                <tr v-show="!readonly">
                     <td class="pa-2" v-for="column in items.headerTable" :key="`c${column.id}`">
                         <FormsFieldsTextComponent v-model="value[column.value]" placeholder="N/A" v-if="!column.ecuation_field">
                         </FormsFieldsTextComponent>
@@ -25,10 +24,11 @@
                 </tr>
             </template>
         </v-data-table>
-        <v-card-actions>
+        <v-card-actions v-show="!readonly">
             <v-spacer></v-spacer>
-            <FormsFieldsSelectComponent dense label-color="white--text" class="mb-2 mr-3"
-                :items="comboInfo.listaLaboratory" v-model="value.laboratory" placeholder="Laboratory">
+            <FormsFieldsTextComponent placeholder="Notes" dense v-model="note"></FormsFieldsTextComponent>
+            <FormsFieldsSelectComponent dense label-color="white--text" class="mb-2 mr-3 ml-2"
+                :items="comboInfo.listaLaboratory" v-model="laboratory" placeholder="Laboratory">
             </FormsFieldsSelectComponent>
             <v-btn color="yellow font-weight-bold black--text" class="rounded-lg"
                 @click="saveItem(sample.id,items.id,type)">
@@ -42,6 +42,10 @@
 
     export default {
         props: {
+            readonly:{
+                type:Boolean,
+                default:false
+            },
             type: {
                 type: String,
                 required: true,
@@ -95,6 +99,8 @@
             return {
                 propItems:this.items,
                 value: {},
+                note:"",
+                laboratory:"",
             }
         },
         methods: {
@@ -103,10 +109,6 @@
                 if (this.values && this.values[sampleName] && this.values[sampleName][type] &&
                     this.values[sampleName][type][item] !== undefined) {
                     return this.values[sampleName][type][item].data.map((item) => {
-                        console.log({
-                            id: item.id,
-                            ...item.row,
-                        })
                         return {
                             value_id: item.id,
                             ...item.row,
@@ -133,9 +135,9 @@
                     return 0
                 }
             },
-            async deleteItem(itemId) {
+            async deleteItem(index) {
+                let itemId = this.itemsTable(this.sample.name, this.type, this.items.description)[index].value_id;
                 console.log(itemId)
-                return
                 let confirmDelete = window.confirm('¿Estás seguro que deseas eliminar este elemento?');
                 if (confirmDelete) {
                     try {
@@ -155,16 +157,32 @@
                         type: type,
                         normative_step: normative,
                         analysis: this.$route.params.id,
+                        notes:this.note,
+                        laboratory:this.laboratory,
                         row: {
                             ...this.value
                         }
                     }
                 })
                 this.value = {}
+                this.note = ""
+                this.laboratory = ""
                 this.$root.$emit('getValues')
             }
 
 
+        },
+        computed:{
+            headers() {
+                if(this.readonly) {
+                    return this.propItems.headerTable
+                } else {
+                    return this.propItems.headerTable.concat({
+                        text: 'Actions',
+                        value: 'actions',
+                    })
+                }
+            }
         }
     }
 </script>

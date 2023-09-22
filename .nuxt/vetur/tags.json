@@ -8,6 +8,9 @@
   "VuetifyLogo": {
     "description": "Auto imported from components/VuetifyLogo.vue"
   },
+  "AccountsRegisterComponent": {
+    "description": "Auto imported from components/accounts/registerComponent.vue"
+  },
   "AccountingCashFlowComponent": {
     "description": "Auto imported from components/accounting/cashFlowComponent.vue"
   },
@@ -20,14 +23,17 @@
   "AccountingResumeComponent": {
     "description": "Auto imported from components/accounting/resumeComponent.vue"
   },
-  "AccountsRegisterComponent": {
-    "description": "Auto imported from components/accounts/registerComponent.vue"
+  "AnalysisCheckboxComponent": {
+    "description": "Auto imported from components/analysis/checkboxComponent.vue"
   },
   "AnalysisTabComponent": {
     "description": "Auto imported from components/analysis/tabComponent.vue"
   },
   "AnalysisTableComponent": {
     "description": "Auto imported from components/analysis/tableComponent.vue"
+  },
+  "ChemicalAnalysisItemTableComponent": {
+    "description": "Auto imported from components/chemicalAnalysis/itemTableComponent.vue"
   },
   "CardsAlquileresExpensasComponent": {
     "description": "Auto imported from components/cards/alquileresExpensasComponent.vue"
@@ -37,9 +43,6 @@
   },
   "CardsHabitantesComponent": {
     "description": "Auto imported from components/cards/habitantesComponent.vue"
-  },
-  "ChemicalAnalysisItemTableComponent": {
-    "description": "Auto imported from components/chemicalAnalysis/itemTableComponent.vue"
   },
   "ClientsCreateComponent": {
     "description": "Auto imported from components/clients/createComponent.vue"

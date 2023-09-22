@@ -1,7 +1,7 @@
 <template>
     <v-container fluid>
         <GeneralCardComponent>
-            <GeneralCardTitleComponent>Analysis N# {{ analysis.id }}</GeneralCardTitleComponent>
+            <GeneralCardTitleComponent>Analysis N# CH0000{{ analysis.code }}</GeneralCardTitleComponent>
             <v-divider></v-divider>
             <v-form ref="form">
 
@@ -117,10 +117,11 @@
                                                 <v-row no-gutters>
                                                     <v-col class="col-6"
                                                         v-for="(normative,index) in chemicalAnalysisItems" :key="index">
-                                                        <v-checkbox :label="normative.description" :value="normative.id"
-                                                            v-model="analysis.samples[sindex].chemicalAnalysis"
-                                                            class="font-weight-bold black--text"></v-checkbox>
-                                                            <v-select flat label="Select an option" dense item-text="description" item-value="id"></v-select>
+                                                        <analysisCheckboxComponent 
+                                                        v-model="analysis.samples[sindex].chemicalAnalysis"
+                                                        :normativeItems="normativeItems.data"
+                                                        :normative="normative"
+                                                        ></analysisCheckboxComponent>
                                                     </v-col>
                                                 </v-row>
                                             </v-card>
@@ -146,10 +147,11 @@
                                                 <v-row no-gutters>
                                                     <v-col class="col-6" v-for="(normative,index) in phisicalAnalysisItems"
                                                         :key="index">
-                                                        <v-checkbox  :label="normative.description" :value="normative.id"
-                                                            v-model="analysis.samples[sindex].phisicalAnalysis"
-                                                            class="font-weight-bold black--text"></v-checkbox>
-                                                            <v-select flat label="Select an option" dense item-text="description" item-value="id"></v-select>
+                                                        <analysisCheckboxComponent 
+                                                        v-model="analysis.samples[sindex].phisicalAnalysis"
+                                                        :normativeItems="normativeItems.data"
+                                                        :normative="normative"
+                                                        ></analysisCheckboxComponent>
 
                                                     </v-col>
                                                 </v-row>
@@ -278,7 +280,6 @@
         created() {
             this.getAnalysis()
             this.getComboInfo()
-            this.getNormatives()
         },
         methods: {
             getAnalysis() {
@@ -301,6 +302,8 @@
                     const samples = formatAnalysis(response.data.data.samples)
                     this.analysis = response.data.data
                     this.analysis.samples = samples
+                    this.getNormatives()
+
                 })
             },
             addSample() {
@@ -353,14 +356,14 @@
             chemicalAnalysisItems() {
                 var data = []
                 data = this.normativeItems.data.filter((n)=>{
-                    return n.normative?.type =='Chemical'
+                    return n.normative?.type =='Chemical'  && n.type=='main'
                 })
                 return data
             },
             phisicalAnalysisItems() {
                 var data = []
                 data = this.normativeItems.data.filter((n)=>{
-                    return n.normative?.type =='Phisical'
+                    return n.normative?.type =='Phisical'  && n.type=='main'
                 })
                 return data
             }

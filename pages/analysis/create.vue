@@ -8,7 +8,7 @@
                 <v-card-text>
                     <v-row>
                         <v-col class="col-12">
-                            <v-text-field :rules="rules.required" label="Batch Number" outlined v-model="analysis.subject"></v-text-field>
+                            <v-text-field :rules="rules.required" label="Batch Number" outlined v-model="analysis.code"></v-text-field>
                         </v-col>
                         <v-col class="col-12">
                             <v-card outlined>
@@ -118,10 +118,22 @@
                                                 <v-row no-gutters>
                                                     <v-col class="col-6"
                                                         v-for="(normative,index) in chemicalAnalysisItems" :key="index">
+                                                        <analysisCheckboxComponent 
+                                                        v-model="analysis.samples[sindex].chemicalAnalysis"
+                                                        :normativeItems="normativeItems.data"
+                                                        :normative="normative"
+                                                        ></analysisCheckboxComponent>
+                                                        <!--
                                                         <v-checkbox :label="normative.description" :value="normative.id"
                                                             v-model="analysis.samples[sindex].chemicalAnalysis"
                                                             class="font-weight-bold black--text"></v-checkbox>
-                                                            <v-select flat label="Select an option" dense item-text="description" item-value="id"></v-select>
+                                                            <v-select flat label="Select an option" 
+                                                            v-model="analysis.samples[sindex].chemicalAnalysis"
+                                                            v-show="getSecondaryNormativeStepsFromSameNormative(normative).length>0"
+                                                            :items="getSecondaryNormativeStepsFromSameNormative(normative)"
+                                                            dense item-text="description" item-value="id"></v-select>
+
+                                                        -->
                                                     </v-col>
                                                 </v-row>
                                             </v-card>
@@ -147,10 +159,11 @@
                                                 <v-row no-gutters>
                                                     <v-col class="col-6" v-for="(normative,index) in phisicalAnalysisItems"
                                                         :key="index">
-                                                        <v-checkbox  :label="normative.description" :value="normative.id"
-                                                            v-model="analysis.samples[sindex].phisicalAnalysis"
-                                                            class="font-weight-bold black--text"></v-checkbox>
-                                                            <v-select flat label="Select an option" dense item-text="description" item-value="id"></v-select>
+                                                        <analysisCheckboxComponent 
+                                                        v-model="analysis.samples[sindex].phisicalAnalysis"
+                                                        :normativeItems="normativeItems.data"
+                                                        :normative="normative"
+                                                        ></analysisCheckboxComponent>
 
                                                     </v-col>
                                                 </v-row>
@@ -340,14 +353,14 @@
             chemicalAnalysisItems() {
                 var data = []
                 data = this.normativeItems.data.filter((n)=>{
-                    return n.normative?.type =='Chemical'
+                    return n.normative?.type =='Chemical'  && n.type=='main'
                 })
                 return data
             },
             phisicalAnalysisItems() {
                 var data = []
                 data = this.normativeItems.data.filter((n)=>{
-                    return n.normative?.type =='Phisical'
+                    return n.normative?.type =='Phisical' && n.type=='main'
                 })
                 return data
             }

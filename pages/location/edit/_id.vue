@@ -66,9 +66,14 @@
                                                 </v-input>
                                             </td>
                                             <td>
-                                                <FormsFieldsSelectComponent v-model="location.typology"
-                                                    :items="['Circuit', 'Bath', 'Fridge', 'Vibration', 'Warehouse', 'Other']"
+                                                <v-input>
+                                                    <FormsFieldsSelectComponent v-model="location.typology"
+                                                    :items="listaTipology.data" item-text="name" item-value="name"
                                                     label="Typology"></FormsFieldsSelectComponent>
+                                                    <v-btn icon class="mt-5" @click="tipologyDialog = true">
+                                                        <v-icon>mdi-plus</v-icon>
+                                                    </v-btn>
+                                                </v-input>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -128,6 +133,36 @@
                 Close
             </v-btn>
         </v-snackbar>
+
+
+        <v-dialog v-model="tipologyDialog" persistent max-width="600">
+            <GeneralCardComponent >
+                <GeneralCardTitleComponent>Add tipology
+                    <v-spacer></v-spacer>
+                    <v-btn icon @click="tipologyDialog = false">
+                        <v-icon>mdi-close</v-icon>
+                    </v-btn>
+                </GeneralCardTitleComponent>
+                <v-divider></v-divider>
+                <v-card-text>
+                    <v-form ref="form">
+
+                    <v-row>
+                        <v-col class="col-12">
+                            <FormsFieldsTextComponent label="Nombre" v-model="tipologyValue">
+                            </FormsFieldsTextComponent>
+                        </v-col>
+                    </v-row>
+                </v-form>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="yellow" class="rounded-lg font-weight-black" @click="addTipology()">Add</v-btn>
+                </v-card-actions>
+            </GeneralCardComponent>
+        </v-dialog>
+
+
     </v-container>
 </template>
 
@@ -151,6 +186,10 @@
                     moduleType:'Quimico'
 
                 },
+                tipologyDialog:false,
+                tipologyValue:"",
+                listaTipology:{},
+
                 comboInfo:{
                     listaLaboratory:[],
                     listaPlant:[],
@@ -166,7 +205,8 @@
         created() {
             this.getComboInfo()
             this.getLocation()
-        },
+            this.getTipologies()
+       },
         methods:{
             updateLocation(){
                 this.$axios.put(`/locations/${this.$route.params.id}`,{
@@ -184,7 +224,23 @@
                     this.location = response.data.data
                 })
             },
-
+            getTipologies(){
+                this.$axios.get('/tipologies',{
+                }).then((data)=>{
+                    this.listaTipology=data.data
+                })
+            },
+            addTipology(){
+                if(this.tipologyValue == "") return
+                this.$axios.post('/tipologies',{
+                    data:{
+                        name:this.tipologyValue
+                    }
+                }).then(()=>{
+                    this.tipologyDialog = false
+                    this.getTipologies()
+                })
+            },
 
             getComboInfo() {
                 let result = {};

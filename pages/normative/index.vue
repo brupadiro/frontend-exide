@@ -137,10 +137,21 @@
                     })
                     .then(response => {
                         this.normativeDialog = false
+                        this.createMainNormativeStep(response.data)
                         this.getNormatives()
                     })
                     .catch(error => {
                         console.log(error)
+                    })
+            },
+            createMainNormativeStep(data) {
+                let dataNormativeStep = {
+                    normative:data.data.id,
+                    description:data.data.name,
+                    type:'main'
+                }
+                this.$axios.post('/normative-steps', {
+                        data: dataNormativeStep
                     })
             },
             deleteNormative(id) {

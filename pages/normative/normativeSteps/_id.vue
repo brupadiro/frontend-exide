@@ -92,7 +92,10 @@
             createStep() {
                 this.step.normative=this.$route.params.id
                 this.$axios.post('/normative-steps', {
-                        data: this.step
+                        data: {
+                            ...this.step,
+                            type:'secondary'
+                        }
                     })
                     .then(() => {
                         this.getSteps()

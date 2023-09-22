@@ -51,10 +51,6 @@
                             <FormsFieldsTextComponent :rules="rules.required" label="Nombre de la columna" v-model="headerInfo.text">
                             </FormsFieldsTextComponent>
                         </v-col>
-                        <v-col class="col-12">
-                            <FormsFieldsTextComponent  :rules="rules.required" v-if="!headerInfo.ecuation_field" label="Valor" v-model="headerInfo.value" type="number">
-                            </FormsFieldsTextComponent>
-                        </v-col>
 
                         <v-col class="col-12">
                             <v-checkbox label="Campo de ecuacion" v-model="headerInfo.ecuation_field">

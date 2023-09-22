@@ -9,7 +9,7 @@
 
                     <v-row>
                         <v-col class="col-12">
-                            <FormsFieldsSelectComponent type="email" multiple chips :items="['Project leader','System adminsitrator','Supervisor','System Calibrador','Plant satelite']" :rules="rules.required" label="mail to" v-model="history.mailFrom">
+                            <FormsFieldsSelectComponent type="email" multiple chips :items="['Project leader','System adminsitrator','Supervisor','System Calibrador','Plant satelite']" :rules="rules.required" label="mail to" v-model="history.mailTo">
                             </FormsFieldsSelectComponent>
                         </v-col>
                         <v-col class="col-12">

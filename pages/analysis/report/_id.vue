@@ -52,102 +52,36 @@
             </v-col>
             <v-col class="col-12" v-for="sample in analysis.samples">
                 <GeneralCardComponent>
-                    <v-simple-table>
-                        <template v-slot:default>
-                            <tbody>
-                                <tr>
-                                    <td>Sample</td>
-                                    <td class="font-weight-light">{{ sample.name }}</td>
-                                    <td></td>
-                                    <td class="font-weight-light"></td>
-                                    <td class="font-weight-light"></td>
-                                    <td class="font-weight-light"></td>
-                                    <td class="font-weight-light"></td>
-                                </tr>
-                                <tr class="primary">
-                                        <th class="white--text"></th>
-                                        <th class="white--text"></th>
-                                        <th class="white--text"></th>
-                                        <th class="white--text"></th>
-                                        <th class="white--text"></th>
-                                        <th class="white--text"></th>
-                                        <th class="white--text"></th>
-                                    </tr>
+                    <v-card>
+                        <v-card-title class="primary">
+                            Sample: {{ sample.name }}
+                        </v-card-title>
+                        <v-card-text v-for="(chemicalItem, index) in sample.chemicalAnalysis" :key="index" class="mt-3">
+                            <v-card outlined>
+                                <v-card-title class="primary text-subtitle-2">
+                                    Chemical analysis: {{ chemicalItem.description }}
+                                    </v-card-title>
+                                    <analysisTableComponent :comboInfo="comboInfo" readonly
+                                :items="chemicalItem" :values="analysisValues"
+                                :sample="sample" type="chemical"></analysisTableComponent>
+
+                                </v-card>
+                        </v-card-text>
 
 
-                                <template v-for="chemical in sample.chemicalAnalysis">
-                                    <tr>
-                                        <td>Chemical analysis</td>
-                                        <td class="font-weight-light">{{ chemical.description }}</td>
-                                        <td></td>
-                                        <td class="font-weight-light"></td>
-                                        <td class="font-weight-light"></td>
-                                        <td class="font-weight-light"></td>
-                                        <td class="font-weight-light"></td>
-                                    </tr>
-                                    <tr class="primary">
-                                        <th class="white--text">Bezeichnun</th>
-                                        <th class="white--text">Rack:Gefa</th>
-                                        <th class="white--text">Typ</th>
-                                        <th class="white--text">Dalum Uhrze</th>
-                                        <th class="white--text">Element-Bezeichnun</th>
-                                        <th class="white--text">Einheit</th>
-                                        <th class="white--text">Intensity</th>
-                                    </tr>
-                                            <!--
-    <tr  v-if="analysisValues[sample.name]!=undefined" v-for="chemicalValues in analysisValues[sample.name]['chemical'][chemical.description]">
-                                        <td>{{ chemicalValues.Bezeichnun }}</td>
-                                        <td>{{ chemicalValues.Rack }}</td>
-                                        <td>{{ chemicalValues.Typ }}</td>
-                                        <td>{{ chemicalValues.DalumUhrze }}</td>
-                                        <td>{{ chemicalValues.ElementBezeichnun }}</td>
-                                        <td>{{ chemicalValues.Einheit }}</td>
-                                        <td>{{ chemicalValues.Intensity }}</td>
-                                        </tr>
-                                    -->
-                                </template>
+                        <v-card-text v-for="(phisicalItem, index) in sample.phisicalAnalysis" :key="index" class="mt-3">
+                            <v-card outlined>
+                                <v-card-title class="primary text-subtitle-2">
+                                    Phisical analysis: {{ phisicalItem.description }}
+                                    </v-card-title>
+                                    <analysisTableComponent :comboInfo="comboInfo" readonly
+                                :items="phisicalItem" :values="analysisValues"
+                                :sample="sample" type="phisical"></analysisTableComponent>
 
-                                <tr class="primary">
-                                        <th class="white--text"></th>
-                                        <th class="white--text"></th>
-                                        <th class="white--text"></th>
-                                        <th class="white--text"></th>
-                                        <th class="white--text"></th>
-                                        <th class="white--text"></th>
-                                        <th class="white--text"></th>
-                                    </tr>
-                                <template v-for="phisical in sample.phisicalAnalysis">
-                                    <tr>
-                                        <td>Phisical analysis</td>
-                                        <td class="font-weight-light">{{ phisical.description }}</td>
-                                        <td></td>
-                                        <td class="font-weight-light"></td>
-                                        <td class="font-weight-light"></td>
-                                        <td class="font-weight-light"></td>
-                                        <td class="font-weight-light"></td>
-                                    </tr>
-                                    <tr class="primary">
-                                        <th class="white--text">Bezeichnun</th>
-                                        <th class="white--text">Rack:Gefa</th>
-                                        <th class="white--text">Typ</th>
-                                        <th class="white--text">Dalum Uhrze</th>
-                                        <th class="white--text">Element-Bezeichnun</th>
-                                        <th class="white--text">Einheit</th>
-                                        <th class="white--text">Intensity</th>
-                                    </tr>
-                                    <!--
-                                    <tr v-if="analysisValues[sample.name]['phisical']!=undefined" v-for="phisicallValues in analysisValues[sample.name]['phisical'][phisical.description]">
-                                        {{ phisicallValues }}
-                                    </tr>
+                                </v-card>
+                        </v-card-text>
 
-                                    -->
-
-                                </template>
-
-
-                            </tbody>
-                        </template>
-                    </v-simple-table>
+                    </v-card>
                 </GeneralCardComponent>
             </v-col>
 

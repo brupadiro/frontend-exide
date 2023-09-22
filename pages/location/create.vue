@@ -68,7 +68,7 @@
                                             <td>
                                                 <v-input>
                                                     <FormsFieldsSelectComponent v-model="location.typology"
-                                                    :items="listaTipology"
+                                                    :items="listaTipology.data" item-text="name" item-value="name"
                                                     label="Typology"></FormsFieldsSelectComponent>
                                                     <v-btn icon class="mt-5" @click="tipologyDialog = true">
                                                         <v-icon>mdi-plus</v-icon>
@@ -191,11 +191,12 @@
                     listaStatus:[]
      
                 },
-                listaTipology:['Circuit', 'Bath', 'Fridge', 'Vibration', 'Warehouse', 'Other']
+                listaTipology:{}
             }
         },
         created() {
             this.getComboInfo()
+            this.getTipologies()
         },
         methods:{
             createLocation(){
@@ -208,6 +209,24 @@
                     }, 3000);
                 })
             },
+            getTipologies(){
+                this.$axios.get('/tipologies',{
+                }).then((data)=>{
+                    this.listaTipology=data.data
+                })
+            },
+            addTipology(){
+                if(this.tipologyValue == "") return
+                this.$axios.post('/tipologies',{
+                    data:{
+                        name:this.tipologyValue
+                    }
+                }).then(()=>{
+                    this.tipologyDialog = false
+                    this.getTipologies()
+                })
+            },
+
             getComboInfo() {
                 let result = {};
                     for (let key in this.exideJson) {
@@ -217,11 +236,6 @@
                     }
                     this.comboInfo =  result
             },
-            addTipology(){
-                if(this.tipologyValue == "") return
-                this.listaTipology.push(this.tipologyValue)
-                this.tipologyDialog=false
-            }
 
         },
         watch:{
