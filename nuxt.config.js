@@ -6,8 +6,8 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
 
   head: {
-    titleTemplate: 'Exide',
-    title: 'Exide',
+    titleTemplate: 'Exide Modulo quimico',
+    title: 'Exide Modulo quimico',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
