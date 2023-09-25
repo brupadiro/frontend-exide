@@ -16,10 +16,15 @@
             <v-toolbar dense color="primary" elevation="0"></v-toolbar>
             <v-data-table hide-default-footer :headers="headers" :items="items.data">
                 <template v-slot:[`item.Actions`]="{ item }">
-                    <v-btn color="yellow" class="black--text font-weight-bold" :to="`/normative/normativeStepFields/${item.id}`"
-                        small>
-                        Opciones
-                    </v-btn>
+                    <v-btn-toggle>
+                        <v-btn color="yellow" class="black--text font-weight-bold"
+                            :to="`/normative/normativeStepFields/${item.id}`" small>
+                            ver
+                        </v-btn>
+                        <v-btn color="red" class="white--text font-weight-bold" @click="deleteNormative(item.id)" small>
+                            <v-icon>mdi-delete</v-icon>
+                        </v-btn>
+                    </v-btn-toggle>
                 </template>
             </v-data-table>
         </GeneralCardComponent>
@@ -33,8 +38,10 @@
                     </v-btn>
                 </v-toolbar>
                 <v-card-text class="py-3">
-                    <FormsFieldsTextComponent label="Description" v-model="step.description" dense  required></FormsFieldsTextComponent>
-                    <FormsFieldsTextComponent label="Order" v-model="step.order" dense  required></FormsFieldsTextComponent>
+                    <FormsFieldsTextComponent label="Description" v-model="step.description" dense required>
+                    </FormsFieldsTextComponent>
+                    <FormsFieldsTextComponent label="Order" v-model="step.order" dense required>
+                    </FormsFieldsTextComponent>
                 </v-card-text>
                 <v-divider></v-divider>
                 <v-card-actions>
@@ -53,12 +60,12 @@
             return {
                 stepDialog: false,
                 items: {
-                    data:[]
+                    data: []
                 },
                 step: {
                     description: '',
                     order: 1,
-                    normatives:[]
+                    normatives: []
                 },
                 headers: [{
                         value: 'id',
@@ -84,17 +91,17 @@
         },
         methods: {
             getSteps() {
-                this.$axios.get('/normative-steps/?filters[normative]='+this.$route.params.id)
+                this.$axios.get('/normative-steps/?filters[normative]=' + this.$route.params.id)
                     .then((response) => {
                         this.items = response.data
                     })
             },
             createStep() {
-                this.step.normative=this.$route.params.id
+                this.step.normative = this.$route.params.id
                 this.$axios.post('/normative-steps', {
                         data: {
                             ...this.step,
-                            type:'secondary'
+                            type: 'secondary'
                         }
                     })
                     .then(() => {
@@ -102,7 +109,22 @@
                     })
 
                 this.stepDialog = false
+            },
+
+            deleteNormative(id) {
+                if (confirm('¿Estás seguro de que quieres eliminar este paso normativo?')) {
+                    console.log("delete")
+                    this.$axios.delete('/normative-steps/' + id)
+                        .then(response => {
+                            this.getSteps()
+                        })
+                        .catch(error => {
+                            console.log(error)
+                        })
+                }
             }
+
+
         }
     };
 </script>

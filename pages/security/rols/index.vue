@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container fluid>
         <HeadersGeneralComponent>
             <template v-slot:title>
                 Rol

@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container fluid>
         <v-row>
             <v-col class="col-12">
                 <GeneralCardComponent>
@@ -38,7 +38,7 @@
                                                 <v-checkbox hide-details label="Laboratory director" v-model="user.laboratory_director.active"></v-checkbox>
                                             </v-col>
                                             <v-col class="col-12 col-md-6">
-                                                <FormsFieldsSelectComponent :items="comboInfo.listaLaboratory" v-model="user.laboratory_director.laboratory">
+                                                <FormsFieldsSelectComponent :items="comboInfo.listaLaboratory" multiple v-model="user.laboratory_director.laboratories">
                                                 </FormsFieldsSelectComponent>
                                             </v-col>
                                         </v-row>
@@ -51,10 +51,10 @@
                                     <v-card-text>
                                         <v-row no-gutters>
                                             <v-col class="col-12 col-md-6">
-                                                <v-checkbox hide-details label="Laboratory technicician"  v-model="user.laboratory_techinician.active"></v-checkbox>
+                                                <v-checkbox hide-details label="Laboratory technicician"   v-model="user.laboratory_techinician.active"></v-checkbox>
                                             </v-col>
                                             <v-col class="col-12 col-md-6">
-                                                <FormsFieldsSelectComponent :items="comboInfo.listaLaboratory"  v-model="user.laboratory_techinician.laboratory">
+                                                <FormsFieldsSelectComponent :items="comboInfo.listaLaboratory"  multiple v-model="user.laboratory_techinician.laboratories">
                                                 </FormsFieldsSelectComponent>
                                             </v-col>
                                         </v-row>
@@ -70,7 +70,7 @@
                                                 <v-checkbox hide-details label="Coordinator"  v-model="user.coordinator.active"></v-checkbox>
                                             </v-col>
                                             <v-col class="col-12 col-md-6">
-                                                <FormsFieldsSelectComponent :items="comboInfo.listaLaboratory" v-model="user.coordinator.laboratory">
+                                                <FormsFieldsSelectComponent multiple :items="comboInfo.listaLaboratory" v-model="user.coordinator.laboratories">
                                                 </FormsFieldsSelectComponent>
                                             </v-col>
                                         </v-row>
@@ -83,11 +83,35 @@
                             <v-col class="col-12 col-md-12">
                                 <v-checkbox label="System Administrator"  v-model="user.system_administrator"></v-checkbox>
                             </v-col>
-                            <v-col class="col-12 col-md-12">
-                                <v-checkbox label="Supervisor"  v-model="user.supervisor"></v-checkbox>
+                            <v-col class="col-12">
+                                <v-card outlined>
+                                    <v-card-text>
+                                        <v-row no-gutters>
+                                            <v-col class="col-12 col-md-6">
+                                                <v-checkbox label="Supervisor"  v-model="user.supervisor.active"></v-checkbox>
+                                            </v-col>
+                                            <v-col class="col-12 col-md-6">
+                                                <FormsFieldsSelectComponent multiple :items="comboInfo.listaLaboratory" v-model="user.supervisor.laboratories">
+                                                </FormsFieldsSelectComponent>
+                                            </v-col>
+                                        </v-row>
+                                    </v-card-text>
+                                </v-card>
                             </v-col>
-                            <v-col class="col-12 col-md-12">
-                                <v-checkbox label="System Calibrador"  v-model="user.calibrador"></v-checkbox>
+                            <v-col class="col-12">
+                                <v-card outlined>
+                                    <v-card-text>
+                                        <v-row no-gutters>
+                                            <v-col class="col-12 col-md-6">
+                                                <v-checkbox label="System Calibrador"  v-model="user.calibrador.active"></v-checkbox>
+                                            </v-col>
+                                            <v-col class="col-12 col-md-6">
+                                                <FormsFieldsSelectComponent multiple :items="comboInfo.listaLaboratory" v-model="user.calibrador.laboratories">
+                                                </FormsFieldsSelectComponent>
+                                            </v-col>
+                                        </v-row>
+                                    </v-card-text>
+                                </v-card>
                             </v-col>
                             <v-col class="col-12 col-md-12">
                                 <v-checkbox label="Plant satelite"  v-model="user.plant_satelite"></v-checkbox>
@@ -167,6 +191,8 @@
                     laboratory_director:{},
                     laboratory_techinician:{},
                     coordinator:{},
+                    calibrador:{},
+                    supervisor:{}
                 },
                 comboInfo: {
                     listaLaboratory: [],

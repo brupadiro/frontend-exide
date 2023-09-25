@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container fluid>
         <HeadersGeneralComponent>
             <template v-slot:title>
                 Analysis Request
@@ -34,7 +34,7 @@
                                     </v-col>
                                     <v-col>
                                         <FormsFieldsSelectComponent dense label-color="white--text"
-                                            :items="comboInfo.listaRequestor" v-model="search.requestor.$contains"
+                                            :items="comboInfo.listaRequestor" v-model="search.applicantName.$contains"
                                             label="Requestor">
                                         </FormsFieldsSelectComponent>
                                     </v-col>
@@ -180,6 +180,7 @@
                     laboratory: {},
                     requestor: {},
                     technician: {},
+                    applicantName:{},
                     expectedDate: {
                         $gte: '',
                         $lte: ''

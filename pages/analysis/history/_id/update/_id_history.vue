@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container fluid>
         <generalCardComponent>
             <generalCardTitleComponent>History&nbsp;<small class="text-subtitle-2">Update Registration</small>
             </generalCardTitleComponent>
