@@ -8,7 +8,7 @@
                 <v-card-text>
                     <v-row>
                         <v-col class="col-12">
-                            <v-text-field :rules="rules.required" label="Batch Number" outlined v-model="analysis.code"></v-text-field>
+                            <v-text-field :rules="rules.required" label="Batch Number" type="number" outlined v-model="analysis.code"></v-text-field>
                         </v-col>
                         <v-col class="col-12">
                             <v-card outlined>
