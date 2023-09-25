@@ -20,6 +20,9 @@
   "AccountingResumeComponent": {
     "description": "Auto imported from components/accounting/resumeComponent.vue"
   },
+  "AccountsRegisterComponent": {
+    "description": "Auto imported from components/accounts/registerComponent.vue"
+  },
   "AnalysisCheckboxComponent": {
     "description": "Auto imported from components/analysis/checkboxComponent.vue"
   },
@@ -29,8 +32,8 @@
   "AnalysisTableComponent": {
     "description": "Auto imported from components/analysis/tableComponent.vue"
   },
-  "AccountsRegisterComponent": {
-    "description": "Auto imported from components/accounts/registerComponent.vue"
+  "ChemicalAnalysisItemTableComponent": {
+    "description": "Auto imported from components/chemicalAnalysis/itemTableComponent.vue"
   },
   "CardsAlquileresExpensasComponent": {
     "description": "Auto imported from components/cards/alquileresExpensasComponent.vue"
@@ -40,9 +43,6 @@
   },
   "CardsHabitantesComponent": {
     "description": "Auto imported from components/cards/habitantesComponent.vue"
-  },
-  "ChemicalAnalysisItemTableComponent": {
-    "description": "Auto imported from components/chemicalAnalysis/itemTableComponent.vue"
   },
   "ClientsCreateComponent": {
     "description": "Auto imported from components/clients/createComponent.vue"
