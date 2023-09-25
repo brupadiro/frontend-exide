@@ -114,7 +114,7 @@
                                         <v-list-item-content>
                                             <v-list-item-title class="py-4">
                                                 <v-input hide-details style="width:100%">
-                                                    <v-text-field  label="Nombre de la normativa"
+                                                    <v-text-field  label="Columna"
                                                         v-model="header.text"></v-text-field>
                                                     <v-btn icon color="red" class="py-4" @click="deleteHeader(header)">
                                                         <v-icon>mdi-delete</v-icon>
