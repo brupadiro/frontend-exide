@@ -50,7 +50,7 @@
                   </v-col>
                   <v-col class="col-12 col-md-6">
                     <v-btn height="60" color="secondary" large block class="font-weight-regular rounded-lg"
-                      @click="modalPendingPayments = !modalPendingPayments">VER</v-btn>
+                      @click="modalPendingPayments = !modalPendingPayments">See</v-btn>
                   </v-col>
                 </v-row>
               </v-card-text>

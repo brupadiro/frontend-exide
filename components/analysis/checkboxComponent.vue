@@ -55,6 +55,7 @@
         computed:{
             getSecondaryNormativeStepsFromSameNormative() {
                 return this.normativeItems.filter((n) => {
+                    console.log(n.normative.id == null)
                     return n.type == 'secondary' && n.normative.id == this.normative.normative.id
                 })
             },

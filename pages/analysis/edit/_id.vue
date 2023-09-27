@@ -90,7 +90,7 @@
                         <v-col class="col-12" :key="sindex" v-for="(sample,sindex) in analysis.samples">
                             <v-card outlined>
                                 <v-toolbar color="grey lighten-2" tile elevation="0" dense>
-                                    <v-toolbar-title class="text-subtitle-1 font-weight-bold">Muestra: {{ sample.name }}
+                                    <v-toolbar-title class="text-subtitle-1 font-weight-bold">Sample: {{ sample.name }}
                                     </v-toolbar-title>
                                 </v-toolbar>
                                 <divider></divider>
@@ -240,14 +240,14 @@
                 },
                 snackBarSuccess: false,
                 statusItems: [
-                    'Peticion hecha',
-                    'Peticion aceptada',
-                    'Muestra enviada',
-                    'Enviada  a otro laboratorio',
-                    'Muestra en cola',
-                    'Analisis finalizado',
-                    'Muestras tiradas',
-                    'Cancelado'
+                    'Request made',
+                    'Request accepted',
+                    'Sample sent',
+                    'Sent to another laboratory',
+                    'Sample in queue',
+                    'Analysis completed',
+                    'Samples thrown',
+                    'Cancelled'
                 ],
                 normativeItems: {
                     data: []

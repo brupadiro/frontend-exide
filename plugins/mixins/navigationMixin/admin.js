@@ -3,7 +3,7 @@ export default {
     return {
       adminItems: [{
           icon: 'apps',
-          title: 'Testing',
+          title: 'ANALYSIS',
           subItems: [{
             icon: 'apps',
             title: 'LOCATION',

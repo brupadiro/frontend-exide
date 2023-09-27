@@ -31,8 +31,8 @@
                         </v-row>
                     </v-card-title>
                     <v-data-table :headers="headers" hide-default-footer disable-sort :items="items.data">
-                        <template v-slot:item.capacity="{ item }">
-                            {{ item.capacity }} %
+                        <template v-slot:item.occuped="{ item }">
+                            {{ item.occuped }} 
                         </template>
 
 
@@ -72,8 +72,8 @@
                         value: 'instruments'
                     },
                     {
-                        text: 'Capacity',
-                        value: 'capacity'
+                        text: 'Occuped',
+                        value: 'occuped'
                     },
                     {
                         text: 'Module type',

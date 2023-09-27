@@ -172,11 +172,11 @@
                     location: '',
                     capacity: '0',
                     batteries: '0',
-                    occuped: '0%',
+                    occuped: '0',
                     status: '',
-                    maxUntil: '',
+                    maxUntil: 0,
                     temperatureControl: false,
-                    temperature: '',
+                    temperature: 0,
                     typology: '',
                     moduleType:'Quimico'
 

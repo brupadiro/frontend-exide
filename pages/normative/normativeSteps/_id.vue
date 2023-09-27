@@ -19,7 +19,7 @@
                     <v-btn-toggle>
                         <v-btn color="yellow" class="black--text font-weight-bold"
                             :to="`/normative/normativeStepFields/${item.id}`" small>
-                            ver
+                            see
                         </v-btn>
                         <v-btn color="red" class="white--text font-weight-bold" @click="deleteNormative(item.id)" small>
                             <v-icon>mdi-delete</v-icon>
