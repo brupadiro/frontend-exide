@@ -2,10 +2,9 @@ export default {
   data() {
     return {
       adminItems: [{
-          icon: 'apps',
-          title: 'ANALYSIS',
+        icon: 'mdi-chart-bar',
+        title: 'ANALYSIS',
           subItems: [{
-            icon: 'apps',
             title: 'LOCATION',
             to: '/location'
           }, {
@@ -18,11 +17,14 @@ export default {
           }, {
             icon: 'apps',
             title: 'INSTRUMENTS',
+            type:'link',
+            to: '/Instruments/Index'
+
           }]
         },
         {
-          icon: 'home',
-          title: 'Normative',
+          icon: 'mdi-cog',
+          title: 'NORMATIVE',
           to: '/promotions',
           subItems: [{
             icon: 'apps',
@@ -31,16 +33,18 @@ export default {
           }]
         },
         {
-          icon: 'home',
+          icon: 'mdi-lock',
           title: 'Security',
           subItems: [{
             icon: 'apps',
-            title: 'Users',
-            to: '/security/users'
+            title: 'USER',
+            to: '/User/Index',
+            type:'link'
           },{
             icon: 'apps',
-            title: 'Rols',
-            to: '/security/rols'
+            title: 'ROLES',
+            to: '/Rol/Index',
+            type:'link'
           }]
         },
       ],
